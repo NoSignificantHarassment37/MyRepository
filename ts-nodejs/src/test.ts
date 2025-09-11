@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 // Esquema de validación con Zod
 const UsuarioSchema = z.object({

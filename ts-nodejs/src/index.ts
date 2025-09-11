@@ -7,9 +7,6 @@ const libros = [
   { id: 3, titulo: 'El Señor de los Anillos', autor: 'J.R.R. Tolkien', anio: 1954, prestado: false }
 ]
 
-let libro:Libro = new Libro({id:1,titulo:`Hello world`,anio:2025});
-
-console.log(libro);
 
 function agregarLibro(titulo:number, autor:string, anio:number):void{
 
