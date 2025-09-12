@@ -1,11 +1,12 @@
 import * as z from "zod";
 import {
   Libro,
+  idSchema,
   libroSchema,
   tituloSchema,
   anioSchema,
   autorSchema,
-} from "./Models/Libros.js";
+} from "./Models/Libro.js";
 
 let libros: Array<Libro> = [
   new Libro({
@@ -32,7 +33,6 @@ let libros: Array<Libro> = [
 ];
 
 let keep_auto_increment: number = libros.length + 1;
-const idShema = libroSchema.shape.id;
 
 const pushArgumentDTO = z.object({
   autor: z.string().max(100),
@@ -59,10 +59,10 @@ function agregarLibro(data: LibroDTO): void {
 }
 function prestarLibro(idLibro: number): void {
   // Primero validamos que exista.
-  const idValidado = idShema.parse(idLibro);
+  const idValidado = idSchema.parse(idLibro);
 
   const indice = libros.findIndex((libro) => libro.id === idValidado);
-  if (indice === -1) throw new Error("No se encontró el libro");
+  if (indice === -1) throw new Error("No se encontró el libro.");
   if (libros[indice].prestado === true)
     throw new Error("Ese libro ya está prestado."); // operaciones de lectura no se ven afectadas.
   /*
@@ -78,9 +78,28 @@ function prestarLibro(idLibro: number): void {
 
   libros = copia; // Aqui reasignamos la referencia del array clonado al array original.
 }
-function devolverLibro(idLibro: number): void {}
-function buscarLibro(terminoBusqueda: string): void {}
-function listarDisponibles(): void {}
+function devolverLibro(idLibro: number): void {
+  const idValidado = idSchema.parse(idLibro);
+
+  const indice = libros.findIndex(libro => libro.id === idValidado);
+  if(indice === -1) throw new Error("No se encontró el libro.");
+  if(libros[indice].prestado === false) throw new Error("Ese libro no está prestado.");
+
+  const copia = [...libros];
+  copia[indice] = copia[indice].withChanges({prestado: false});
+}
+function buscarLibro(terminoBusqueda: string): Array<Libro> {
+
+  const terminoBusquedaValidado = tituloSchema.parse(terminoBusqueda);
+
+  const filtrados = libros.filter(libro => libro.titulo.includes(terminoBusquedaValidado));
+
+  return filtrados;
+}
+function listarDisponibles(): Array<Libro> {
+  const filtrados = libros.filter(libro => libro.prestado = false);
+  return filtrados;
+}
 
 agregarLibro({
   autor: "Mateo",
@@ -95,4 +114,3 @@ agregarLibro({
 
 // Puedes agregar un registro de préstamos si lo consideras necesario.
 // let prestamos = [];
-console.log(2);
