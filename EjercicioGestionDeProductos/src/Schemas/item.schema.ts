@@ -6,4 +6,6 @@ export const itemSchema = z.object({
     cantidad: z.number().int().positive()
 });
 
+export const cantidadSchema = itemSchema.shape.cantidad;
+
 export type ItemSchema = z.infer<typeof itemSchema>;
