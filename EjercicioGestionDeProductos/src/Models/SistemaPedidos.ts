@@ -1,4 +1,8 @@
+import { Producto } from "./producto";
+import { Estado } from "../enums/estado";
+
 export class SistemaPedidos{
+    inventario!:Producto;
     constructor(){
 
     }
@@ -11,7 +15,7 @@ export class SistemaPedidos{
     obtenerTotalPedido(idPedido:number):void{
 
     }
-    actualizarEstadoPedido(idPedido:number, nuevoEstado:):void{
+    actualizarEstadoPedido(idPedido:number, nuevoEstado:Estado):void{
 
     }
 

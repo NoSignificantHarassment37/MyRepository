@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
+    "type":"module",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "rootDir": "./src",
@@ -9,10 +10,20 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "sourceMap": true,
     "jsx": "react-jsx",
     "allowImportingTsExtensions": true,
     "noEmit": true
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "zod": "^4.1.8"
   }
 }

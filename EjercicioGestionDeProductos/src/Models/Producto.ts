@@ -1,6 +1,14 @@
-import { productoDTOSchema } from "../Schemas/productoDTO.schema";
+import { ProductoSchema } from "../Schemas/producto.shema";
+import { productoSchema } from "../Schemas/producto.shema";
 export class Producto {
-  constructor(data: Partial<productoDTOSchema>) {
-    
+  id!:number;
+  nombre!:string;
+  precio!:number;
+  constructor(data: Partial<ProductoSchema>) {
+    const validado = productoSchema.parse(data);
+
+    this.id = validado.id;
+    this.nombre = validado.nombre;
+    this.precio = validado.precio;
   }
 }

@@ -1,6 +1,8 @@
 import * as z from "zod";
-import { SistemaPedidos } from "../Models/SistemaPedidos";
-import { Producto } from "../Models/Producto";
-export const sistemaPedidos = z.object({
-    productos:Array<Producto>
-})
+import { itemSchema } from "./item.schema";
+import { productoSchema } from "./producto.shema";
+
+export const sistemaPedidosSchema = z.object({
+    pedidos:z.array(itemSchema),
+    productos: z.array(productoSchema)
+});

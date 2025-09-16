@@ -5,4 +5,4 @@ export const productoSchema = z.object({
     precio: z.number().positive()
 });
 
-export type productoDTOSchema = z.infer<typeof productoSchema>;
+export type ProductoSchema = z.infer<typeof productoSchema>;

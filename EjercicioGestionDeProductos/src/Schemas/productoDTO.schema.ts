@@ -3,4 +3,4 @@ export const productoDTOSchema = z.object({
     nombre: z.string().max(50),
     precio: z.number().positive()
 });
-export type productoDTOSchema = z.infer<typeof productoDTOSchema>;
+export type ProductoDTOSchema = z.infer<typeof productoDTOSchema>;
