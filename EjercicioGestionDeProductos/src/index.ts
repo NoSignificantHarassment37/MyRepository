@@ -1,8 +1,7 @@
-import { SistemaPedidos } from "./models/sistemaPedidos";
 import {estado} from "./enums/estado";
+import {Item} from "./models/item";
 
-
-console.log(estado.entregado);
+let item:Item = new Item({producto:{id:1, nombre:"Jugo", precio:12000}, cantidad:1});
 /*
 // Prueba de las clases y funciones
 

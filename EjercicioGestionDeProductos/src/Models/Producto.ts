@@ -1,9 +1,8 @@
-import { ProductoSchema } from "../Schemas/producto.shema";
-import { productoSchema } from "../Schemas/producto.shema";
+import { productoSchema, ProductoSchema } from "../Schemas/producto.shema";
 export class Producto {
-  id!:number;
-  nombre!:string;
-  precio!:number;
+  id!: number;
+  nombre!: string;
+  precio!: number;
   constructor(data: Partial<ProductoSchema>) {
     const validado = productoSchema.parse(data);
 

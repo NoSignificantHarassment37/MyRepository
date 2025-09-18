@@ -1,3 +1,7 @@
+CONCEPTOS CLAVE: 
+
+relacion typescript - javascript : TS y JS son ambos lenguajes de programacion, PERO typescript es una mejora VIRTUAL  
+
 2️⃣ Inicializar npm
 npm init -y
 Crea un archivo package.json con valores por defecto (-y evita que te haga preguntas).
