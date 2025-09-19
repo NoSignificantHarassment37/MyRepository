@@ -1,13 +1,6 @@
-# crea una variable de un producto
+a = (4, 6, 9, 3, 6, 19)
+b = list(a)
+print(a)
+print(b)
 
-product = { "nombre":"Jabon", "precio":4500 }
-
-cosas = {
-    1:"mateo",
-    2:"2",
-    3:"3"
-}
-
-cosas[5] = "Juan"
-
-print(cosas[5])
+diccionario = {1, 2, 3, 4, 5}
