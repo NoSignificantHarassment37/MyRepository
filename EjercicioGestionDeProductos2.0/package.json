@@ -14,13 +14,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^5.0.3",
     "@types/node": "^24.5.2",
     "esbuild": "^0.25.10",
+    "esbuild-plugin-alias": "^0.2.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.2"
   },
   "dependencies": {
+    "express": "^5.1.0",
     "zod": "^4.1.9"
   }
 }

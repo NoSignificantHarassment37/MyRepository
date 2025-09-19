@@ -1,16 +1,27 @@
+import { fileURLToPath } from "url"; // 🔹 OBLIGATORIO
 import { build } from "esbuild";
+import alias from "esbuild-plugin-alias";
 import path from "path";
 
+// Simular __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 build({
-  entryPoints: ["src/index.ts"], // punto de entrada de la app
-  bundle: true,                   // mete todo en un solo archivo (o en varios si hay splitting)
-  platform: "node",                // target = Node.js, no navegador
-  target: "node20",                // versión mínima de Node que soportas
-  outdir: "dist",                  // carpeta de salida
-  sourcemap: true,                 // genera mapas de depuración
-  tsconfig: "tsconfig.json",       // respeta tu configuración TS
-  alias: {                         // alias para imports
-    "@models": path.resolve("src/models"),
-    "@abstract":path.resolve("src/abstract")
-  }
+  bundle: true,
+  external: ["express"], // de momento se que esto excluye express del bundle final.
+  entryPoints: ["src/index.ts"],
+  bundle: true,
+  platform: "node",
+  target: "node20",
+  outdir: "dist",
+  sourcemap: true,
+  tsconfig: "tsconfig.json",
+  plugins: [
+    alias({
+      "@controllers": path.resolve(__dirname, "src/controllers"),
+      "@routes": path.resolve(__dirname, "src/routes"),
+      "@models": path.resolve(__dirname, "src/models"),
+    }),
+  ],
 }).catch(() => process.exit(1));

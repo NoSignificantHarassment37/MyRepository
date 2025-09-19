@@ -42,3 +42,12 @@ Problema: tienes que ejecutar este comando cada vez que entres a trabajar, y sol
 
 Aqui hay un bundler para resolver los paths.
 npm install -D esbuild 
+el build.js es un ejemplo de como usarlo, para transpilar solamente ejecutalo.
+
+Instala expressjs.
+npm install express
+npm install -D @types/express
+
+
+instalar esbuild-plugin-alias
+npm install -D esbuild-plugin-alias
