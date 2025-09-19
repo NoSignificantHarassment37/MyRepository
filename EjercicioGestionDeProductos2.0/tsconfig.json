@@ -1,14 +1,21 @@
 {
+  "module":"esnext",  // salida en formato ESM
+  "moduleResolution":"nodenext", // resolución correcta de imports
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
+    "target":"es2020", // o ESNext
+    "baseUrl": "./src",
+    "paths": {
+      "@models/*":["models/*"],
+      "@abstract/*":["abstract/*"]
+    },
     // File Layout
     "rootDir": "./src",
     "outDir": "./dist",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
+    "module": "nodenext", // Importante para trabajar con ESModules
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],

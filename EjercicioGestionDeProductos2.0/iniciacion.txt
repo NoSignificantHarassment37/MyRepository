@@ -33,9 +33,12 @@ npx tsc --watch
 Observa los archivos .ts dentro del rootDir definido en tsconfig.json.
 
 Pero mejor instalar ts-node.
-npm install --save-dev ts-node @types/node 
+npm install -D ts-node @types/node 
 Importante tener TS con @types/node 
 
 Cada vez que cambias un archivo, lo transpila automáticamente a .js en outDir.
 
 Problema: tienes que ejecutar este comando cada vez que entres a trabajar, y solo compila; no ejecuta tu app.
+
+Aqui hay un bundler para resolver los paths.
+npm install -D esbuild 
