@@ -58,18 +58,3 @@ class Restaurant:
     
     def mostrar_informacion(self):
         print(f'Nombre: {self.nombre}, categoria: {self.__categoria}, precio: {self.__precio}')
-
-
-mc_donalds = Restaurant("McDonalds", "Comida Rapida", 12000)
-
-print(mc_donalds.categoria)
-
-restaurante = Restaurant('Pizzeria mexico', 'comida rapida', 12000)
-
-print(restaurante.categoria)
-
-restaurante.categoria = "asasdasd"
-
-
-
-print(type(restaurante.categoria))

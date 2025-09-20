@@ -1,0 +1,1 @@
+Para ejecutar código C++ solamente necesitaremos un compilador, yo descargué 
