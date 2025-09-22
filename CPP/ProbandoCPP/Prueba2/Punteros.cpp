@@ -33,7 +33,7 @@ void Punteros()
 	*p le dice que traiga lo que hay en la dirección que p guarda.
 	*/
 
-	int* p = &a; // No es una copia del valor, p apunta a la direccion en memori a la que 'a' apunta. Por eso cuando la cambio, parece que p también cambia.
+	int* p = &a; // No es una copia del valor, p apunta a la direccion en memoria a la que 'a' apunta. Por eso cuando la cambio, parece que p también cambia.
 
 	cout << "Valor de p: " << *p << endl;
 
@@ -41,4 +41,25 @@ void Punteros()
 
 	cout << "Valor de a: " << a << endl;
 	cout << "Valor de p: " << *p << endl;
+
+	// Referencias: son alias para variables, no se para que se usarían, además de que no se puede cambiar a que variable apuntan.
+	
+	int& alias = a;
+
+	int* aliasPointer = &alias;
+	int* aPointer = &a;
+
+
+	cout << alias << endl << a << endl << aliasPointer << endl << aPointer << endl;
+
+	int* EnteroEnHeap = new int(5);
+	short* ShortEnHeap = new short(10);
+
+	cout << *EnteroEnHeap << endl;
+	cout << *ShortEnHeap << endl;
+
+	delete EnteroEnHeap;
+	delete ShortEnHeap;
+	EnteroEnHeap = nullptr;
+	ShortEnHeap = nullptr;
 }

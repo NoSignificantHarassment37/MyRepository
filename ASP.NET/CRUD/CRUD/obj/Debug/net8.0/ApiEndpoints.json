@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "CRUD.Controllers.EmployeeController",
+    "Method": "Obtener",
+    "RelativePath": "Empleados/Obtener",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

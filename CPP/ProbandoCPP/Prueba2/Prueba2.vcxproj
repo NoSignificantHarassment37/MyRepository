@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ArraysYVectores.cpp" />
+    <ClCompile Include="Prueba.cpp" />
     <ClCompile Include="Punteros.cpp" />
     <ClCompile Include="TiposPrimitivos.cpp" />
   </ItemGroup>

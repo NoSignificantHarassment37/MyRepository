@@ -7,20 +7,20 @@
       "RelativeMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|solutionrelative:Prueba2\\Punteros.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|solutionrelative:Prueba2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\headers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|solutionrelative:Prueba2\\headers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\ArraysYVectores.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|solutionrelative:Prueba2\\ArraysYVectores.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|solutionrelative:Prueba2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\TiposPrimitivos.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|solutionrelative:Prueba2\\TiposPrimitivos.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\headers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{42E370D1-4D7E-47C8-81DE-73B41AC6BEB4}|Prueba2\\Prueba2.vcxproj|solutionrelative:Prueba2\\headers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,14 +40,14 @@
               "RelativeDocumentMoniker": "Prueba2\\Punteros.cpp",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\Punteros.cpp",
               "RelativeToolTip": "Prueba2\\Punteros.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACEAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-20T18:44:29.201Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "headers.h",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\headers.h",
               "RelativeDocumentMoniker": "Prueba2\\headers.h",
@@ -55,38 +55,37 @@
               "RelativeToolTip": "Prueba2\\headers.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-09-20T13:49:34.354Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-20T13:49:34.354Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\main.cpp",
               "RelativeDocumentMoniker": "Prueba2\\main.cpp",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\main.cpp",
               "RelativeToolTip": "Prueba2\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-20T13:35:40.4Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ArraysYVectores.cpp",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\ArraysYVectores.cpp",
               "RelativeDocumentMoniker": "Prueba2\\ArraysYVectores.cpp",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\ArraysYVectores.cpp",
               "RelativeToolTip": "Prueba2\\ArraysYVectores.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAqwGEAAAB2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-20T13:35:01.175Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "TiposPrimitivos.cpp",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\MyRepository\\CPP\\ProbandoCPP\\Prueba2\\TiposPrimitivos.cpp",
               "RelativeDocumentMoniker": "Prueba2\\TiposPrimitivos.cpp",
@@ -94,8 +93,7 @@
               "RelativeToolTip": "Prueba2\\TiposPrimitivos.cpp",
               "ViewState": "AgIAABkAAAAAAAAAAAAAAD4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-09-20T00:52:58.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-20T00:52:58.416Z"
             }
           ]
         }

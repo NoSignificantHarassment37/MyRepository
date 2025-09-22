@@ -30,6 +30,9 @@
     <ClCompile Include="Punteros.cpp">
       <Filter>Archivos de origen\TiposNoPrimitivos</Filter>
     </ClCompile>
+    <ClCompile Include="Prueba.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers.h">

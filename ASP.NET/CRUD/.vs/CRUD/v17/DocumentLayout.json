@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\CRUD\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|c:\\users\\admin\\desktop\\crud\\crud\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|solutionrelative:crud\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|c:\\users\\admin\\desktop\\crud\\crud\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|solutionrelative:crud\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|c:\\users\\admin\\desktop\\crud\\crud\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|solutionrelative:crud\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|c:\\users\\admin\\desktop\\crud\\crud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|solutionrelative:crud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|c:\\users\\admin\\desktop\\crud\\crud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|solutionrelative:crud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|c:\\users\\admin\\desktop\\crud\\crud\\data\\appdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|solutionrelative:crud\\data\\appdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|c:\\users\\admin\\desktop\\crud\\crud\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|solutionrelative:crud\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|c:\\users\\admin\\desktop\\crud\\crud\\wwwroot\\administracion.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02BF5AB7-DD58-4778-9550-16B06BD077F5}|CRUD\\CRUD.csproj|solutionrelative:crud\\wwwroot\\administracion.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\appsettings.json",
+              "RelativeDocumentMoniker": "CRUD\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\appsettings.json",
+              "RelativeToolTip": "CRUD\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-21T19:56:29.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContextFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Data\\AppDbContextFactory.cs",
+              "RelativeDocumentMoniker": "CRUD\\Data\\AppDbContextFactory.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Data\\AppDbContextFactory.cs",
+              "RelativeToolTip": "CRUD\\Data\\AppDbContextFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T19:54:53.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Administracion.html",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\wwwroot\\Administracion.html",
+              "RelativeDocumentMoniker": "CRUD\\wwwroot\\Administracion.html",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\wwwroot\\Administracion.html",
+              "RelativeToolTip": "CRUD\\wwwroot\\Administracion.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-09-21T19:52:37.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "CRUD\\Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "CRUD\\Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T15:06:33.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "CRUD\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "CRUD\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T15:03:34.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Program.cs",
+              "RelativeDocumentMoniker": "CRUD\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Program.cs",
+              "RelativeToolTip": "CRUD\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T15:03:02.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "CRUD\\Models\\Employee.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\Models\\Employee.cs",
+              "RelativeToolTip": "CRUD\\Models\\Employee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T14:58:36.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\wwwroot\\index.html",
+              "RelativeDocumentMoniker": "CRUD\\wwwroot\\index.html",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\CRUD\\CRUD\\wwwroot\\index.html",
+              "RelativeToolTip": "CRUD\\wwwroot\\index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-09-21T14:52:56.263Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
