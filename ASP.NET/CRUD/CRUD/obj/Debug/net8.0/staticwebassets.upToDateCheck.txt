@@ -1,2 +1,0 @@
-wwwroot\Administracion.html
-wwwroot\index.html
