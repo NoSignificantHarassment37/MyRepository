@@ -43,6 +43,11 @@ namespace CRUD.Migrations
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
                     b.Property<DateTime>("FechaDeCreacion")
                         .HasColumnType("datetime(6)");
 
