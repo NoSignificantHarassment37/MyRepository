@@ -5,9 +5,19 @@ namespace CRUD.Models;
 
 public class Employee
 {
+    public enum TipoDocumento
+    {
+        Cedula,
+        TarjetaDeIdentidad,
+        PermisoProteccionTemporal
+    }
     // No me gusta usar data anotations para validar datos, pero para un CRUD sencillo no esta mal.
     [Key]
     public int Id { get; set; }
+    public TipoDocumento TipoDeDocumento { get; set; }
+    [Required]
+    [MaxLength(12)]
+    public string NumeroIdentificacion { get; set; } = string.Empty;
     [Required]
     [MaxLength(50)]
     public string Nombre { get; set; } = string.Empty;

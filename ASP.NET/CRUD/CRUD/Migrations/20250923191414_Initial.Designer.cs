@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUD.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250923182243_initial")]
-    partial class initial
+    [Migration("20250923191414_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +53,14 @@ namespace CRUD.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("NumeroIdentificacion")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("varchar(12)");
+
+                    b.Property<int>("TipoDeDocumento")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

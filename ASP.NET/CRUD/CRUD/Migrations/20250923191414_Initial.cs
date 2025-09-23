@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CRUD.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,6 +21,9 @@ namespace CRUD.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    TipoDeDocumento = table.Column<int>(type: "int", nullable: false),
+                    NumeroIdentificacion = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Nombre = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Edad = table.Column<int>(type: "int", nullable: false),

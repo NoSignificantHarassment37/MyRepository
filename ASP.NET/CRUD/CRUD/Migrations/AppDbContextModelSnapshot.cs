@@ -51,6 +51,14 @@ namespace CRUD.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("NumeroIdentificacion")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("varchar(12)");
+
+                    b.Property<int>("TipoDeDocumento")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Employees");

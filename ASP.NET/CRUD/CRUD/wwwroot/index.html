@@ -5,13 +5,37 @@
     <title></title>
 </head>
 <body>
-    <ul id=""></ul>
+    <form>
+        <fieldset>
+            <legend>Inserte la informacion de su empleado</legend>
+
+            <label for="empleados-form__nombre">Nombre del empleado</label>
+            <input id="empleados-form__nombre" name="nombre" type="text" />
+
+            <label for="empleados-form__edad">Edad del empleado</label>
+            <input id="empleados-form__edad" name="edad" type="text" />
+
+            <label for="empleados-form__ciudad">Ciudad de nacimiento del empleado</label>
+            <input id="empleados-form__ciudad" name="ciudad" type="text" />
+
+            <label for="empleados-form__direccion">Direccion del empleado</label>
+            <input id="empleados-form__direccion" name="direccion" type="text" />
+        </fieldset>
+    </form>
     <ul id="empleados"></ul>
 
+    <script>
+        const
+    </script>
     <script>
         const empleadosDisplay = document.getElementById("empleados");
 
         async function cargarEmpleados() {
+            const tiposDeDocumento = {
+                1: "Cedula",
+                2: "Tarjeta de identidad",
+                3: "Permiso de proteccion temporal"
+            };
             // Limpia el contenedor antes de volver a cargar
             empleadosDisplay.innerHTML = '';
 
@@ -30,37 +54,45 @@
                     const empleadoItem = document.createElement('li');
                     empleadoItem.className = 'virtualEmpleado';
                     empleadoItem.innerHTML = `
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Característica</th>
-                                        <th>Valor</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Nombre</td>
-                                        <td>${empleadoJSON.nombre}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Edad</td>
-                                        <td>${empleadoJSON.edad}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ciudad de nacimiento</td>
-                                        <td>${empleadoJSON.ciudadNacimiento}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dirección</td>
-                                        <td>${empleadoJSON.direccion}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fecha de creación</td>
-                                        <td>${new Date(empleadoJSON.fechaDeCreacion).toLocaleString()}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        `;
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Característica</th>
+                                                    <th>Valor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Tipo de documento</td>
+                                                    <td>${tiposDeDocumento[empleadoJSON.tipoDeDocumento]}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Numero de documento</td>
+                                                    <td>${empleadoJSON.numeroIdentificacion}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nombre</td>
+                                                    <td>${empleadoJSON.nombre}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Edad</td>
+                                                    <td>${empleadoJSON.edad}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Ciudad de nacimiento</td>
+                                                    <td>${empleadoJSON.ciudadNacimiento}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dirección</td>
+                                                    <td>${empleadoJSON.direccion}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Fecha de creación</td>
+                                                    <td>${new Date(empleadoJSON.fechaDeCreacion).toLocaleString()}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    `;
                     empleadosDisplay.appendChild(empleadoItem);
                 });
 
