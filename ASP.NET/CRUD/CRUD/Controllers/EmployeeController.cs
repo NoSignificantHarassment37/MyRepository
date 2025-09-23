@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using CRUD.Models;
 using CRUD.Data;
 
-
 namespace CRUD.Controllers
 {
     [ApiController]
@@ -18,7 +17,8 @@ namespace CRUD.Controllers
         [HttpGet("Obtener")]
         public async Task<IActionResult> Obtener()
         {
-            return Ok(await Database.Employees.ToListAsync());
+            List<Employee> empleados = await Database.Employees.ToListAsync();
+            return Ok(empleados);
         }
     }
 }

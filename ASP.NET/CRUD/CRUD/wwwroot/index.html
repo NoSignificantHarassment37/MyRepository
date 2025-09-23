@@ -5,78 +5,71 @@
     <title></title>
 </head>
 <body>
-    <ul id="empleados">
-        <li>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Caracteristica</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Nombre</td>
-                        <td>Mateo</td>
-                    </tr>
-                    <tr>
-                        <td>Edad</td>
-                        <td>17</td>
-                    </tr>
-                </tbody>
-            </table>
-        </li>
-        <li>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Caracteristica</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Nombre</td>
-                        <td>Abimael</td>
-                    </tr>
-                    <tr>
-                        <td>Edad</td>
-                        <td>17</td>
-                    </tr>
-                </tbody>
-            </table>
-        </li>
-    </ul>
+    <ul id="empleados"></ul>
+
     <script>
         const empleadosDisplay = document.getElementById("empleados");
+
         async function cargarEmpleados() {
-            empleadosDisplay.innerHTML(''); // Primero es necesario vaciar el contenedor.
-            const response;
+            // Limpia el contenedor antes de volver a cargar
+            empleadosDisplay.innerHTML = '';
+
             try {
-                response = await fetch("Empleados/Obtener"); // Importante: un fetch puede arrojar una excepcion, asi que es importante manejarla.
-                const empleados = await response.json();
+                const response = await fetch("Empleados/Obtener"); // Usa la URL completa si hace falta
+                let empleados;
+
+                try {
+                    empleados = await response.json();
+                } catch (error) {
+                    console.log(`Error al deserializar la respuesta JSON: ${error}`);
+                    return;
+                }
 
                 empleados.forEach(empleadoJSON => {
                     const empleadoItem = document.createElement('li');
                     empleadoItem.className = 'virtualEmpleado';
-                    empleadoItem.innerHTML(`
-                        
-                    `);
+                    empleadoItem.innerHTML = `
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Característica</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nombre</td>
+                                        <td>${empleadoJSON.nombre}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edad</td>
+                                        <td>${empleadoJSON.edad}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Departamento</td>
+                                        <td>${empleadoJSON.departamente}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dirección</td>
+                                        <td>${empleadoJSON.direccion}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha de creación</td>
+                                        <td>${new Date(empleadoJSON.fechaDeCreacion).toLocaleString()}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        `;
                     empleadosDisplay.appendChild(empleadoItem);
-                })
+                });
+
+            } catch (error) {
+                console.log(`Error de red o fetch: ${error}`);
             }
-            catch (error) {
-                console.log(`Error: ${error}`);
-            }
         }
-        try {
-            const empleados = await fetch("Empleados/Obtener");
 
-
-        }
-        catch {
-
-        }
+        // Ejecuta al cargar la página
+        cargarEmpleados();
     </script>
 </body>
 </html>
