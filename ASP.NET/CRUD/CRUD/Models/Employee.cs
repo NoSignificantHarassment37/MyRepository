@@ -16,7 +16,7 @@ public class Employee
     public int Edad {  get; set; }
     [Required]
     [MaxLength(50)]
-    public string Departamente { get; set; } = string.Empty;
+    public string CiudadNacimiento { get; set; } = string.Empty;
     [Required]
     [MaxLength(50)]
     public string Direccion { get; set; } = string.Empty;

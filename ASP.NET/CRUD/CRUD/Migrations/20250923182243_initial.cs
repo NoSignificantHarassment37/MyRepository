@@ -24,7 +24,7 @@ namespace CRUD.Migrations
                     Nombre = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Edad = table.Column<int>(type: "int", nullable: false),
-                    Departamente = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    CiudadNacimiento = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Direccion = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),

@@ -30,7 +30,7 @@ namespace CRUD.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Departamente")
+                    b.Property<string>("CiudadNacimiento")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");

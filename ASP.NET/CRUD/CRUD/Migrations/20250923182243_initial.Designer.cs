@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUD.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250923044033_initial")]
+    [Migration("20250923182243_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -33,7 +33,7 @@ namespace CRUD.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Departamente")
+                    b.Property<string>("CiudadNacimiento")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
