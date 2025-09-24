@@ -68,7 +68,7 @@
     </form>
     <ul id="empleados"></ul>
     <script>
-        document.getElementById('crearEmpleado').addEventListener('submit', async function (e) {
+        document.getElementById('form-eliminar').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const form = e.target;
@@ -85,10 +85,10 @@
             const empleado = {
                 numeroDeDocumento: form.documento.value.trim()
             };
-
+            console.log(empleado);
             try {
                 const response = await fetch('Empleados/Eliminar', {
-                    method: 'POST',
+                    method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
                     },

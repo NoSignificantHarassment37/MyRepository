@@ -67,7 +67,6 @@ namespace CRUD.Controllers
             {
                 return BadRequest(new { message = "La ciudad de nacimiento no puede contener mas de 15 caracteres de longitud." });
             }
-            Console.WriteLine(dto.TipoDeDocumento);
             Employee empleado = new Employee { 
                 CiudadNacimiento = dto.CiudadNacimiento,
                 Direccion = dto.Direccion,
@@ -76,7 +75,6 @@ namespace CRUD.Controllers
                 NumeroIdentificacion = dto.NumeroIdentificacion,
                 TipoDeDocumento = dto.TipoDeDocumento
             };
-            Console.WriteLine(empleado.TipoDeDocumento);
             Database.Employees.Add(empleado);
             await Database.SaveChangesAsync();
             return Ok(new { message="El empleado se creó correctamente." });
@@ -84,12 +82,13 @@ namespace CRUD.Controllers
         [HttpDelete("Eliminar")]
         public async Task<IActionResult> Eliminar([FromBody] EliminarEmpleadoDTO dto)
         {
+            Console.WriteLine("Se ha llamado el controlador.");
             if (string.IsNullOrWhiteSpace(dto.NumeroDeDocumento) || dto.NumeroDeDocumento.Length > 12)
             {
                 return BadRequest(new { message= "El numero de documento debe tener menos de 12 caracteres." });
             }
             Employee? empleadoAEliminar = Database.Employees.FirstOrDefault(em => em.NumeroIdentificacion == dto.NumeroDeDocumento);
-       
+            
             if(empleadoAEliminar is null)
             {
                 return BadRequest(new { message = "No existe un empleado con ese numero de documento." });
