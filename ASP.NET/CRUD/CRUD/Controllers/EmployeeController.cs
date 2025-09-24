@@ -11,6 +11,11 @@ namespace CRUD.Controllers
     {
         public string NumeroDeDocumento { get; set; } = string.Empty;
     }
+    public class ModificarEmpleadoDTO
+    {
+        public string NumeroDeDocumento { get; set; } = string.Empty;
+        public string Direccion {  get; set; } = string.Empty;
+    }
     public class CrearEmpleadoDTO
     {
         public TipoDeDocumento TipoDeDocumento { get; set; }
@@ -99,6 +104,19 @@ namespace CRUD.Controllers
                 await Database.SaveChangesAsync();
                 return Ok(new { message="El empleado se ha eliminado correctamente." });
             }
+        }
+        [HttpPut("Modificar")]
+        public async Task<IActionResult> Modificar([FromBody] ModificarEmpleadoDTO dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.NumeroDeDocumento))
+            {
+                return BadRequest(new { message="Error al deserializar el documento o el documento eran espacios en blanco." });
+            }
+            if(dto.NumeroDeDocumento.Length > 12)
+            {
+                return BadRequest(new { message = "El documento no pueden ser mas de 12 caracteres." });
+            }
+
         }
     }
 }
