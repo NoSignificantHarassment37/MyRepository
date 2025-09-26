@@ -105,6 +105,7 @@ namespace CRUD.Controllers
                 return Ok(new { message="El empleado se ha eliminado correctamente." });
             }
         }
+        /*
         [HttpPut("Modificar")]
         public async Task<IActionResult> Modificar([FromBody] ModificarEmpleadoDTO dto)
         {
@@ -118,5 +119,6 @@ namespace CRUD.Controllers
             }
 
         }
+        */
     }
 }

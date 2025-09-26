@@ -1,0 +1,5 @@
+npm create vite@latest frontend -- --template react-ts
+Para crear un proyecto react con vite
+
+npm run dev
+en el directorio que contiene la carpeta frontend para correr el servidor.
