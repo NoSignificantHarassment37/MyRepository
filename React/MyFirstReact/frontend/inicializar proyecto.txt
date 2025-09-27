@@ -3,3 +3,5 @@ Para crear un proyecto react con vite
 
 npm run dev
 en el directorio que contiene la carpeta frontend para correr el servidor.
+
+Cuando clones el repositorio, para poder ejecutar, debes ejecutar 'npm install' para instalar todas las dependencias.
