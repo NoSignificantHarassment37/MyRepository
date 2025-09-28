@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD de Ventas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navegación */
+        nav {
+            background: #007bff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                margin: 0;
+                padding: 0;
+            }
+
+                nav ul li {
+                    margin: 0 15px;
+                }
+
+                    nav ul li a {
+                        color: white;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }
+
+                        nav ul li a.activo,
+                        nav ul li a:hover {
+                            text-decoration: underline;
+                        }
+
+        /* Título principal */
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Formulario */
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin: 8px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #0056b3;
+            }
+
+        /* Tabla */
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Botones de acciones dentro de la tabla */
+        table button {
+            margin: 2px;
+        }
+
+        button.editar {
+            background: #28a745;
+        }
+
+            button.editar:hover {
+                background: #1e7e34;
+            }
+
+        button.eliminar {
+            background: #dc3545;
+        }
+
+            button.eliminar:hover {
+                background: #a71d2a;
+            }
+
+        /* Footer opcional */
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            background: #f4f6f9;
+            color: #555;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Ajustes responsive */
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+                nav ul li {
+                    margin: 5px 0;
+                }
+
+            table, form {
+                width: 95%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../Clientes/clientes.html" class="activo">Clientes</a></li>
+            <li><a href="../Productos/productos.html">Productos</a></li>
+            <li><a href="../DetalleVentas/detalle-ventas.html">Detalle Ventas</a></li>
+        </ul>
+    </nav>
+
+    <h1>Gestión de Ventas</h1>
+
+    <form id="venta-form">
+        <input type="hidden" id="venta-id">
+        <label>Fecha: <input type="date" id="fecha" required></label>
+        <label>Total: <input type="number" id="total" step="0.01" required></label>
+        <label>Cliente ID: <input type="number" id="clienteId" required></label>
+        <button type="submit">Guardar Venta</button>
+        <button type="button" onclick="resetForm()">Cancelar</button>
+    </form>
+
+    <h2>Lista de Ventas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Cliente ID</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="ventas-tbody">
+            <!-- Filas dinámicas -->
+        </tbody>
+    </table>
+
+    <script>
+        const apiUrl = "http://localhost:5193/api/ventas"; // Asegúrate de usar tu puerto correcto
+
+        document.addEventListener("DOMContentLoaded", loadVentas);
+        document.getElementById("venta-form").addEventListener("submit", handleSubmit);
+
+        async function loadVentas() {
+            const res = await fetch(apiUrl);
+            const ventas = await res.json();
+
+            const tbody = document.getElementById("ventas-tbody");
+            tbody.innerHTML = "";
+
+            ventas.forEach(v => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                        <td>${v.ventaId}</td>
+                        <td>${v.fecha.split('T')[0]}</td>
+                        <td>${v.total.toFixed(2)}</td>
+                        <td>${v.clienteId}</td>
+                        <td>
+                            <button onclick='editVenta(${JSON.stringify(v)})'>Editar</button>
+                            <button onclick='deleteVenta(${v.ventaId})'>Eliminar</button>
+                        </td>
+                    `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            const id = document.getElementById("venta-id").value;
+            const fecha = document.getElementById("fecha").value;
+            const total = parseFloat(document.getElementById("total").value);
+            const clienteId = parseInt(document.getElementById("clienteId").value);
+
+            const data = { fecha, total, clienteId };
+
+            if (id) {
+                // PUT
+                await fetch(`${apiUrl}/${id}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+            } else {
+                // POST
+                await fetch(apiUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+            }
+
+            resetForm();
+            loadVentas();
+        }
+
+        function editVenta(venta) {
+            document.getElementById("venta-id").value = venta.ventaId;
+            document.getElementById("fecha").value = venta.fecha.split('T')[0];
+            document.getElementById("total").value = venta.total;
+            document.getElementById("clienteId").value = venta.clienteId;
+        }
+
+        async function deleteVenta(id) {
+            if (!confirm("¿Estás seguro de eliminar esta venta?")) return;
+
+            await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+            loadVentas();
+        }
+
+        function resetForm() {
+            document.getElementById("venta-form").reset();
+            document.getElementById("venta-id").value = "";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+    nav a.activo,
+    nav a:hover {
+        background-color: #34495e;
+        border-radius: 5px;
+    }
+
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.bienvenida {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.opciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+    .card a {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #3498db;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .card a:hover {
+            background-color: #2980b9;
+        }
+
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+/*css_clientes*/
+.contenido-pagina {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.formulario {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+.tabla-clientes {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.editar {
+    background-color: #27ae60;
+}
+
+.eliminar {
+    background-color: #e74c3c;
+    margin-left: 5px;
+}
+/*css_productos*/
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 60px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+.editar {
+    background-color: #27ae60;
+}
+
+.eliminar {
+    background-color: #e74c3c;
+    margin-left: 5px;
+}

@@ -1,0 +1,7 @@
+para crear la base de datos ejecuta primero
+dotnet ef migrations add initial
+
+y luego 
+dotnet ef database update
+
+si le ocurre un error, mire que la base de datos no esté creada, si lo está, la borra.

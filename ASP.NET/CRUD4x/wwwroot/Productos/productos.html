@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Encabezado */
+        header {
+            background: #007bff;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+            header .container {
+                width: 90%;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            header h1 {
+                margin: 0;
+            }
+
+            header nav ul {
+                list-style: none;
+                display: flex;
+                margin: 0;
+                padding: 0;
+            }
+
+                header nav ul li {
+                    margin-left: 20px;
+                }
+
+                    header nav ul li a {
+                        color: white;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }
+
+                        header nav ul li a.activo,
+                        header nav ul li a:hover {
+                            text-decoration: underline;
+                        }
+
+        /* Contenido */
+        main {
+            padding: 20px;
+        }
+
+        .formulario,
+        .tabla-productos {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 20px auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        /* Formulario */
+        label {
+            display: block;
+            margin: 8px 0 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #0056b3;
+            }
+
+        /* Tabla */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Botones de acciones */
+        button.editar {
+            background: #28a745;
+        }
+
+            button.editar:hover {
+                background: #1e7e34;
+            }
+
+        button.eliminar {
+            background: #dc3545;
+        }
+
+            button.eliminar:hover {
+                background: #a71d2a;
+            }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            background: #f4f6f9;
+            color: #555;
+            border-top: 1px solid #ddd;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gestión de Productos</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../Clientes/clientes.html">Clientes</a></li>
+                    <li><a href="../Ventas/ventas.html">Ventas</a></li>
+                    <li><a href="../DetalleVentas/detalle-ventas.html" class="activo">Detalle de ventas</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenido-pagina">
+        <section class="formulario">
+            <h2>Agregar Producto</h2>
+            <form id="formProducto">
+                <input type="hidden" id="productoId">
+                <label for="nombre">Nombre del producto:</label>
+                <input type="text" id="nombre" placeholder="Ej: Laptop Dell" required>
+
+                <label for="precio">Precio:</label>
+                <input type="number" step="0.01" id="precio" placeholder="Ej: 1200.50" required>
+
+                <label for="stock">Cantidad en stock:</label>
+                <input type="number" id="stock" placeholder="Ej: 15" required>
+
+                <button type="submit">Guardar Producto</button>
+                <button type="button" onclick="resetForm()">Cancelar</button>
+            </form>
+        </section>
+
+        <h2>Lista de Productos</h2>
+        <section class="tabla-productos">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productos-tbody">
+                    <!-- Filas dinámicas -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Travelix</p>
+    </footer>
+
+    <script>
+        const apiUrl = "http://localhost:5193/api/productos"; // Ajusta tu puerto
+
+        document.addEventListener("DOMContentLoaded", loadProductos);
+        document.getElementById("formProducto").addEventListener("submit", handleSubmit);
+
+        async function loadProductos() {
+            const res = await fetch(apiUrl);
+            const productos = await res.json();
+
+            const tbody = document.getElementById("productos-tbody");
+            tbody.innerHTML = "";
+
+            productos.forEach(p => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${p.productoId}</td>
+                    <td>${p.nombre}</td>
+                    <td>${p.precio.toFixed(2)}</td>
+                    <td>${p.stock}</td>
+                    <td>
+                        <button class="editar" onclick='editProducto(${JSON.stringify(p)})'>Editar</button>
+                        <button class="eliminar" onclick='deleteProducto(${p.productoId})'>Eliminar</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            const id = document.getElementById("productoId").value;
+            const nombre = document.getElementById("nombre").value;
+            const precio = parseFloat(document.getElementById("precio").value);
+            const stock = parseInt(document.getElementById("stock").value);
+
+            const data = { nombre, precio, stock };
+
+            if (id) {
+                await fetch(`${apiUrl}/${id}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+            } else {
+                await fetch(apiUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+            }
+
+            resetForm();
+            loadProductos();
+        }
+
+        function editProducto(producto) {
+            document.getElementById("productoId").value = producto.productoId;
+            document.getElementById("nombre").value = producto.nombre;
+            document.getElementById("precio").value = producto.precio;
+            document.getElementById("stock").value = producto.stock;
+        }
+
+        async function deleteProducto(id) {
+            if (!confirm("¿Estás seguro de eliminar este producto?")) return;
+
+            await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+            loadProductos();
+        }
+
+        function resetForm() {
+            document.getElementById("formProducto").reset();
+            document.getElementById("productoId").value = "";
+        }
+    </script>
+</body>
+</html>

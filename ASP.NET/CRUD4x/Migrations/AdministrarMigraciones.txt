@@ -1,0 +1,47 @@
+Crear nueva migración
+
+Add-Migration NombreMigracion
+# o
+dotnet ef migrations add NombreMigracion
+
+Eliminar la última migración (si aún no fue aplicada a la DB)
+
+Remove-Migration
+# o
+dotnet ef migrations remove
+
+Ver lista de migraciones
+
+Get-Migration
+# o
+dotnet ef migrations list
+
+Aplicar cambios a la base
+
+Actualizar base de datos a la última migración
+
+Update-Database
+# o
+dotnet ef database update
+
+Actualizar a una migración específica
+
+Update-Database NombreMigracion
+# o
+dotnet ef database update NombreMigracion
+
+Revertir (volver atrás a una migración anterior)
+
+Update-Database NombreMigracionAnterior
+
+Scripts SQL
+
+Generar script SQL de todas las migraciones
+
+Script-Migration
+# o
+dotnet ef migrations script
+
+Generar script de una migración específica a otra
+
+Script-Migration MigracionInicial MigracionFinal

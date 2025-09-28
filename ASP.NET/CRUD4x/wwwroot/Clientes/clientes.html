@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Clientes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gestión de Clientes</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Inicio</a></li>
+                    <li><a href="../Productos/productos.html">Productos</a></li>
+                    <li><a href="../DetalleVentas/detalle-ventas.html">Detalle-Ventas</a></li>
+                    <li><a href="../Ventas/ventas.html">Ventas</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="formulario">
+            <h2 id="form-title">Crear Cliente</h2>
+            <form id="clienteForm">
+                <input type="hidden" id="clienteId">
+
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" required>
+
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" required>
+
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" required>
+
+                <button type="submit">Guardar</button>
+            </form>
+        </section>
+
+        <section class="tabla-productos">
+            <h2>Lista de Clientes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="clientesTable"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Travelix</p>
+    </footer>
+
+    <script src="clientes.js"></script>
+</body>
+</html>

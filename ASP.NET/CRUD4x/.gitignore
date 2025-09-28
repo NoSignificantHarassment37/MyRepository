@@ -1,0 +1,33 @@
+# Este gitignore era para excluir archivos innecesarios del GITHUB
+# Compilados y carpetas de build
+bin/
+obj/
+Debug/
+Release/
+
+# Configuración de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Archivos temporales y de cache
+*.log
+*.cache
+*.tmp
+
+# Paquetes NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+# Archivos de bases de datos locales
+*.mdf
+*.ldf
+
+# Archivos de publicación
+*.publish.xml
+
+# Archivos generados automáticamente
+project.lock.json
+project.fragment.lock.json
+artifacts/
