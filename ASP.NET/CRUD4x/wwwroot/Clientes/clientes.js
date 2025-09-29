@@ -17,11 +17,11 @@ async function cargarClientes() {
     clientes.forEach(cliente => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${cliente.clienteId}</td>
-            <td>${cliente.nombre}</td>
-            <td>${cliente.direccion}</td>
-            <td>${cliente.telefono}</td>
-            <td class="actions">
+            <td class="col text-center">${cliente.clienteId}</td>
+            <td class="col text-center">${cliente.nombre}</td>
+            <td class="col text-center">${cliente.direccion}</td>
+            <td class="col text-center">${cliente.telefono}</td>
+            <td class="actions col text-center">
                 <button class="edit" onclick="editarCliente(${cliente.clienteId}, '${cliente.nombre}', '${cliente.direccion}', '${cliente.telefono}')">Editar</button>
                 <button class="delete" onclick="eliminarCliente(${cliente.clienteId})">Eliminar</button>
             </td>

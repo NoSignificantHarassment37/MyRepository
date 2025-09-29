@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Clientes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 border rounded p-2 mb-5 bg-success text-white shadow-lg">Columna1</div>
+            <div class="col-md-4 border rounded p-2 mb-5 bg-warning text-white shadow-lg">Columna2</div>
+            <div class="col-md-4 border rounded bg-primary p-2 mb-5 text-white">Columna3</div>
+        </div>
+    </div>
+    <!-- Botón -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">
+        Abrir modal
+    </button>
+
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="miModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Título del Modal</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        Contenido del modal...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                Menú
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Opción 1</a></li>
+                <li><a class="dropdown-item" href="#">Opción 2</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <p>
+        <a class="btn btn-info" data-bs-toggle="collapse" href="#collapseEjemplo">
+            Mostrar/Ocultar contenido
+        </a>
+    </p>
+    <div class="collapse" id="collapseEjemplo">
+        <div class="card card-body">
+            Este contenido se puede ocultar o mostrar.
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="miCarrusel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="1.jpeg" class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    <img src="2.jpg" class="d-block w-100">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#miCarrusel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#miCarrusel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" title="Tooltip activo">
+        Pasa el mouse
+    </button>
+
+    <button type="button" class="btn btn-info" data-bs-toggle="popover" title="Título" data-bs-content="Contenido del popover">
+        Popover
+    </button>
+
+
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+    </div>
+
+
+    <script src="clientes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
