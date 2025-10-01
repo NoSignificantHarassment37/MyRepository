@@ -17,11 +17,11 @@ async function cargarClientes() {
     clientes.forEach(cliente => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td class="col text-center">${cliente.clienteId}</td>
-            <td class="col text-center">${cliente.nombre}</td>
-            <td class="col text-center">${cliente.direccion}</td>
-            <td class="col text-center">${cliente.telefono}</td>
-            <td class="actions col text-center">
+            <td class="col text-center border-2 border-dark">${cliente.clienteId}</td>
+            <td class="col text-center border-2 border-dark">${cliente.nombre}</td>
+            <td class="col text-center border-2 border-dark">${cliente.direccion}</td>
+            <td class="col text-center border-2 border-dark">${cliente.telefono}</td>
+            <td class="actions col text-center border-2 border-dark">
                 <button class="edit" onclick="editarCliente(${cliente.clienteId}, '${cliente.nombre}', '${cliente.direccion}', '${cliente.telefono}')">Editar</button>
                 <button class="delete" onclick="eliminarCliente(${cliente.clienteId})">Eliminar</button>
             </td>
@@ -77,4 +77,8 @@ async function eliminarCliente(id) {
         await fetch(`${API_URL}/${id}`, { method: "DELETE" });
         cargarClientes();
     }
+}
+
+function vaciarFormulario(e) {
+    
 }
