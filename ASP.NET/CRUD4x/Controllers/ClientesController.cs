@@ -42,6 +42,16 @@ namespace CRUD4x.Controllers
             var cliente = await _context.Clientes
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ClienteId == id);
+            /*
+             Esto me parece importante comentarlo.
+
+            Ambos metodos, FindAsync y FirstOrDefaultAsync buscan y devuelven un elemento de la base de datos en base a una condicion, PERO:
+            
+            FindAsync busca en base a la clave primaria. Busca primero en el change tracking del contexto, y luego en la base de datos,
+            no se permite modificadores como .where, .select, .asnotracking.
+
+            FirstOrDefault busca en base a una condicion,
+             */
 
             if (cliente == null)
                 return NotFound();

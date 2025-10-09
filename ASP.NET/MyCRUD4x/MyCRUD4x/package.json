@@ -1,0 +1,19 @@
+{
+  "type": "module",
+  "name": "mycrud4x",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"esbuild src/Vendor/zod.bundle.ts --bundle --minify --outfile=wwwroot/scripts/vendor/zod.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.25.10",
+    "typescript": "^5.9.3",
+    "zod": "^4.1.12"
+  }
+}
