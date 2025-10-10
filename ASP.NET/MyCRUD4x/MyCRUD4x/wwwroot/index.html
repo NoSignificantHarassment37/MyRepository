@@ -1,26 +1,78 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css" />
     <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+  </head>
+  <body data-bs-theme="dark">
     <main>
-        <form id="clientes-form">
-            <label for="clientes-form__nombre-input">Introduzca el nombre</label>
-            <input id="clientes-form__nombre-input" type="text" name="nombre"/>
+      <div class="container">
+        <form id="clientes-form" class="needs-validation" novalidate>
+          <div class="form-row row">
+            <div class="col-md-6">
+              <label for="clientes-form__nombre-input"
+                >Introduzca el nombre</label
+              >
+              <input
+                class="form-control"
+                id="clientes-form__nombre-input"
+                type="text"
+                name="nombre"
+              />
+              <div class="invalid-feedback"></div>
+            </div>
 
-            <label for="clientes-form__direccion-input">Introduzca la dirección</label>
-            <input id="clientes-form__direccion-input" type="text" name="direccion" />
+            <div class="col-md-6">
+              <label for="clientes-form__direccion-input"
+                >Introduzca la dirección</label
+              >
+              <input
+                class="form-control"
+                id="clientes-form__direccion-input"
+                type="text"
+                name="direccion"
+              />
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
 
-            <label for="clientes-form__telefono-input">Introduzca el teléfono</label>
-            <input id="clientes-form__telefono-input" type="text" name="telefono"/>
-
-            <button type="submit">Enviar</button>
+          <div class="form-row">
+            <label for="clientes-form__telefono-input"
+              >Introduzca el teléfono</label
+            >
+            <input
+              class="form-control"
+              id="clientes-form__telefono-input"
+              type="text"
+              name="telefono"
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+          <button
+            class="btn btn-light m-3"
+            style="align-self: center"
+            type="submit"
+          >
+            Enviar
+          </button>
         </form>
+      </div>
     </main>
+    <table id="table-clientes" class="container">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody id="table-clientes__body"></tbody>
+    </table>
     <p id="output"></p>
-    <script src="scripts/Vendor/zod.bundle.js"></script>
-    <script src="scripts/Pages/Clientes.js"></script>
-</body>
+    <script type="module" src="scripts/Vendor/zod.js"></script>
+    <script type="module" src="scripts/Pages/Clientes.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+  </body>
 </html>

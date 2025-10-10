@@ -1,0 +1,3 @@
+# Ignorar todo dentro de scripts/
+*
+!.gitignore
