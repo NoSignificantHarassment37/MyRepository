@@ -141,3 +141,7 @@ dist
 **/obj/
 
 **/.vs/
+# Ignorar todo dentro de wwwroot/scripts/
+ASP.NET/MyCRUD4x/MyCRUD4x/wwwroot/scripts/*
+# Pero no ignores el archivo de marcador
+!ASP.NET/MyCRUD4x/MyCRUD4x/wwwroot/scripts/.gitkeep
