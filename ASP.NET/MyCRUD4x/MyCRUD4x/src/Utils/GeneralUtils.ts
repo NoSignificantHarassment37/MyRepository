@@ -2,13 +2,13 @@ import type * as Z from 'zod';
 
 export function GetElementOrThrow<T extends HTMLElement>(
   id: string,
-  ctor: new () => T
+  constructor: new () => T
 ): T {
-  const el = document.getElementById(id);
-  if (!(el instanceof ctor)) {
+  const Element = document.getElementById(id);
+  if (!(Element instanceof constructor)) {
     throw new Error(`Elemento '${id}' no encontrado o tipo inválido`);
   }
-  return el;
+  return Element;
 }
 
 export function ValidarArrayDeSchemas<T>(

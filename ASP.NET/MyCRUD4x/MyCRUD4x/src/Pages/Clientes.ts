@@ -7,13 +7,13 @@ import {
   ValidarArrayDeSchemas,
   DeserializarRespuesta,
 } from "../Utils/GeneralUtils";
-const formularioClientes = GetElementOrThrow("clientes-form", HTMLFormElement);
-const outPutElement = GetElementOrThrow("output", HTMLParagraphElement);
-const tableBodyElement = GetElementOrThrow(
+const formularioClientes: HTMLFormElement = GetElementOrThrow<HTMLFormElement>("table-clientes", HTMLFormElement);
+const outPutElement: HTMLParagraphElement = GetElementOrThrow<HTMLParagraphElement>("outpu", HTMLParagraphElement);
+const tableBodyElement: HTMLTableSectionElement = GetElementOrThrow<HTMLTableSectionElement>(
   "table-clientes__body",
   HTMLTableSectionElement
 );
-const InputNombre = GetElementOrThrow(
+const InputNombre: HTMLInputElement = GetElementOrThrow<HTMLInputElement>(
   "clientes-form__nombre-input",
   HTMLInputElement
 );
@@ -27,16 +27,16 @@ const InputDireccion = GetElementOrThrow(
 );
 formularioClientes.addEventListener("submit", HandleSubmit);
 window.addEventListener("load", CargarClientes);
-let Modo: number = -1;
+let Modo: number = 1;
 
 async function EditarCliente(Cliente: string) {
-  const TipoDesconocido:unknown = JSON.parse(Cliente);
-  const TryParseResult:Z.ZodSafeParseResult<Cliente> = ClienteSchema.safeParse(TipoDesconocido);
-  let ClienteObj:Cliente;
-  if(TryParseResult.success){
+  const TipoDesconocido: unknown = JSON.parse(Cliente);
+  const TryParseResult: Z.ZodSafeParseResult<Cliente> = ClienteSchema.safeParse(TipoDesconocido);
+  let ClienteObj: Cliente;
+  if (TryParseResult.success) {
     ClienteObj = TryParseResult.data as Cliente;
   }
-  else{
+  else {
     throw new Error("El json proporcionado como parametro no corresponde a un objeto 'Cliente'.");
   }
   ColocarCamposEnFormulario(JSON.stringify(ClienteObj));
@@ -91,14 +91,14 @@ async function HandleSubmit(event: SubmitEvent): Promise<void> {
     }
   }
 }
-function ColocarCamposEnFormulario(ClienteArg:string) {
+function ColocarCamposEnFormulario(ClienteArg: string) {
   const Objeto = JSON.parse(ClienteArg);
   const TryParseResult = ClienteSchema.safeParse(Objeto);
-  let Cliente:Cliente;
-  if(TryParseResult.success){
+  let Cliente: Cliente;
+  if (TryParseResult.success) {
     Cliente = TryParseResult.data;
   }
-  else{
+  else {
     throw new Error("Los datos proporcionados como argumento no corresponden a una instancia de Cliente.");
   }
   InputNombre.value = Cliente.nombre;
