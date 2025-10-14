@@ -1,7 +1,7 @@
 import { context } from "esbuild";
 import glob from "tiny-glob";
 
-const entryPoints = await glob("src/pages/**/*.ts");
+const entryPoints = await glob("src/**/*.ts");
 
 const ctxt = await context({
   entryPoints,

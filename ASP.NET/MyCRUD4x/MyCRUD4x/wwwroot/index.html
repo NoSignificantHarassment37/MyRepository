@@ -57,21 +57,28 @@
           >
             Enviar
           </button>
+          
         </form>
       </div>
     </main>
-    <table id="table-clientes" class="container">
+    <div class="container">
+      <div class="card shadow">
+
+      </div>
+    </div>
+    <table id="table-clientes" class="table">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Direccion</th>
                 <th>Telefono</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody id="table-clientes__body"></tbody>
     </table>
     <p id="output"></p>
-    <script type="module" src="scripts/Vendor/zod.js"></script>
+    <script type="module" src="scripts/Vendor/zod.bundle.js"></script>
     <script type="module" src="scripts/Pages/Clientes.js"></script>
     <script src="bootstrap/bootstrap.min.js"></script>
   </body>

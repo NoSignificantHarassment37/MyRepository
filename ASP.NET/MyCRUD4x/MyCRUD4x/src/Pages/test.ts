@@ -1,9 +1,9 @@
 import type { ZodSafeParseResult } from 'zod';
 import { testSchema, type TestSchema } from '../Models/Test.schema';
-import { getElementOrThrow } from '../utils/GetElements';
+import { GetElementOrThrow } from '../Utils/GeneralUtils';
 
-const output:HTMLParagraphElement = getElementOrThrow('output', HTMLParagraphElement);
-const formularioClientes = getElementOrThrow('clientes-form', HTMLFormElement);
+const output:HTMLParagraphElement = GetElementOrThrow('output', HTMLParagraphElement);
+const formularioClientes = GetElementOrThrow('clientes-form', HTMLFormElement);
 
 formularioClientes.addEventListener('submit', async (e) => {
     e.preventDefault();

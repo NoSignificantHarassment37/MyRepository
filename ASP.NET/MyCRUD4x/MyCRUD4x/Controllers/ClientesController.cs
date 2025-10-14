@@ -26,6 +26,7 @@ namespace MyCRUD4x.Controllers
                 .AsNoTracking()
                 .Select(cliente => new ClienteReadDTO
                 {
+                    Id = cliente.Id,
                     Telefono = cliente.Telefono,
                     Direccion = cliente.Direccion,
                     Nombre = cliente.Nombre,
