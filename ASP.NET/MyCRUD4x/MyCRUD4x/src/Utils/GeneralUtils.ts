@@ -6,6 +6,7 @@ export function GetElementOrThrow<T extends HTMLElement>(
 ): T {
   const Element = document.getElementById(id);
   if (!(Element instanceof constructor)) {
+    console.error(`No se ha encontrado el elemento ${id}`);
     throw new Error(`Elemento '${id}' no encontrado o tipo inválido`);
   }
   return Element;

@@ -1,8 +1,7 @@
 import type * as Z from "zod";
 const z = window.Zod;
 
-export const ClienteSchema = z.object({
-  id: z.int().min(1),
+export const clienteSchemaCreateDTO = z.object({
   nombre: z
     .string()
     .min(2, "Nombre demasiado corto.")
@@ -14,4 +13,4 @@ export const ClienteSchema = z.object({
   telefono: z.string().max(12, "Dirección demasiado larga."),
 });
 
-export type Cliente = Z.infer<typeof ClienteSchema>;
+export type ClienteCreateDTO = Z.infer<typeof clienteSchemaCreateDTO>;
