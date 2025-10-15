@@ -25,7 +25,7 @@ const InputNombre: HTMLInputElement = GetElementOrThrow<HTMLInputElement>(
   HTMLInputElement
 );
 const InputTelefono = GetElementOrThrow(
-  "clientes-form__direccion-input",
+  "clientes-form__telefono-input",
   HTMLInputElement
 );
 const InputDireccion = GetElementOrThrow(
@@ -36,7 +36,7 @@ const ClientesGlobal = PedirClientes();
 formularioClientes.addEventListener("submit", HandleSubmit);
 window.addEventListener("DOMContentLoaded", CargarClientes);
 let Modo: number = 1;
-function PutClickListeners() {
+function ColocarListenersDeClick() {
   const editButtons: NodeListOf<HTMLButtonElement> =
     document.querySelectorAll(".form-editar-btn");
   editButtons.forEach((btn) => {
@@ -51,7 +51,7 @@ function PutClickListeners() {
   deleteButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const id = Number(btn.dataset.id);
-      EliminarCliente(`api/Clientes/${id}`);
+      EliminarCliente(id);
     });
   });
 }
@@ -123,10 +123,23 @@ async function EditarCliente(Cliente: string) {
   }
   Modo = 1;
 }
-async function EliminarCliente(URL: string): Promise<void> {
+async function EliminarCliente(id: number): Promise<void> {
   if (!confirm("Estás seguro de eliminar este cliente?")) return;
-  await fetch(`${URL}`, { method: "DELETE" });
-  CargarClientes();
+  const response = await fetch(`api/Clientes/${id}`, { method: "DELETE" });
+  if (response.ok) {
+    const filas: Array<HTMLTableRowElement> = Array.from(
+      tableBodyElement.children as HTMLCollectionOf<HTMLTableRowElement>
+    );
+    for(const fila of filas){
+      if(Number(fila.dataset.id) === id){
+        fila.remove();
+        return;
+      }
+    }
+    console.error("No hay ninguna fila con ese id.");
+  }
+  // actualizar clientes en la pagina en caso de que se halla eliminado satisfactoriamente
+
   alert("Cliente eliminado correctamente.");
 }
 /*
@@ -180,6 +193,7 @@ async function CargarClientes(): Promise<void> {
         let clientes = resultadoValidar;
         clientes.forEach((cliente) => {
           const trElement: HTMLTableRowElement = document.createElement("tr");
+          trElement.dataset.id = String(cliente.id);
           trElement.innerHTML = `
           <td>${cliente.nombre}</td>
           <td>${cliente.direccion}</td>
@@ -191,9 +205,12 @@ async function CargarClientes(): Promise<void> {
           tableBodyElement.appendChild(trElement);
         });
       } else {
+        console.error(
+          "Los esquemas que envio el servidor no son compatibles con el esquema definido en el cliente."
+        );
       }
     }
-    PutClickListeners();
+    ColocarListenersDeClick();
   } catch (error) {
     console.error("Error al hacer la petición al servidor.", error);
   }
