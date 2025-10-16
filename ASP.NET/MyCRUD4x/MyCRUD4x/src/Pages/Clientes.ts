@@ -178,25 +178,6 @@ async function EditarCliente() {
   formularioClientes.reset();
   alert('Cliente modificado satisfactoriamente.');
 }
-async function EliminarCliente(id: number): Promise<void> {
-  if (!confirm("Estás seguro de eliminar este cliente?")) return;
-  const response = await fetch(`api/Clientes/${id}`, { method: "DELETE" });
-  if (response.ok) {
-    const filas: Array<HTMLTableRowElement> = Array.from(
-      tableBodyElement.children as HTMLCollectionOf<HTMLTableRowElement>
-    );
-    for (const fila of filas) {
-      if (Number(fila.dataset.id) === id) {
-        fila.remove();
-        return;
-      }
-    }
-    console.error("No hay ninguna fila con ese id.");
-  }
-  // actualizar clientes en la pagina en caso de que se halla eliminado satisfactoriamente
-
-  alert("Cliente eliminado correctamente.");
-}
 /*
 Me gustaría implementar el modo como enum.
 Modo:
@@ -308,13 +289,6 @@ async function CrearCliente(): Promise<void> {
               botonEditar.addEventListener("click", EditarBotonFuncion);
             }
             tableBodyElement.appendChild(trElement);
-            const filas: Array<HTMLTableRowElement> = Array.from(
-              tableBodyElement.children as HTMLCollectionOf<HTMLTableRowElement>
-            );
-            for (const fila of filas) {
-              if (Number(fila.dataset.id) === nuevoCliente.id) {
-              }
-            }
           } else {
             console.error(
               "Los datos que envio el servidor no corresponden al esquema definido en el cliente.",
