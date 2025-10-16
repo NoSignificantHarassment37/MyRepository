@@ -14,7 +14,7 @@ namespace MyCRUD4x.Controllers
      */
     public class ClientesController : ControllerBase
     {
-        public ClientesController(AppDbContext context) 
+        public ClientesController(AppDbContext context)
         {
             this._context = context;
         }
@@ -45,13 +45,14 @@ namespace MyCRUD4x.Controllers
                 .AsNoTracking()
                 .SingleOrDefaultAsync(cliente => cliente.Id == id);
 
-            if(cliente is null)
+            if (cliente is null)
             {
                 return NotFound();
             }
 
-            ClienteReadDTO clienteAsDTO = new ClienteReadDTO 
+            ClienteReadDTO clienteAsDTO = new ClienteReadDTO
             {
+                Id = cliente.Id,
                 Telefono = cliente.Telefono,
                 Direccion = cliente.Direccion,
                 Nombre = cliente.Nombre
@@ -74,9 +75,10 @@ namespace MyCRUD4x.Controllers
 
             ClienteReadDTO clienteResponse = new ClienteReadDTO
             {
+                Id = nuevoCliente.Id,
                 Nombre = nuevoCliente.Nombre,
-                Telefono = cliente.Telefono,
-                Direccion = cliente.Direccion
+                Telefono = nuevoCliente.Telefono,
+                Direccion = nuevoCliente.Direccion
             };
 
             /*
@@ -92,11 +94,11 @@ namespace MyCRUD4x.Controllers
         public async Task<ActionResult<ClienteReadDTO>> ModificarCliente([FromBody] ClienteUpdateDTO dto, int id)
         {
             // Capa de validacion, debería usarse fluent validation.
-            if(dto.Nombre.Length > 50)
+            if (dto.Nombre.Length > 50)
             {
                 return BadRequest(dto.Nombre);
             }
-            if(dto.Telefono.Length > 20)
+            if (dto.Telefono.Length > 20)
             {
                 return BadRequest(dto.Telefono);
             }
@@ -109,7 +111,7 @@ namespace MyCRUD4x.Controllers
             Cliente? clienteDB = await _context.Clientes.FindAsync(id);
 
             // Si es null, significa que no existe.
-            if(clienteDB is null)
+            if (clienteDB is null)
             {
                 return NotFound();
             }
@@ -118,10 +120,11 @@ namespace MyCRUD4x.Controllers
             clienteDB.Telefono = dto.Telefono;
             clienteDB.Direccion = dto.Direccion;
             clienteDB.Nombre = dto.Nombre;
-
+            await _context.SaveChangesAsync();
             // Creamos el DTO que será devuelto en la respuesta.
             ClienteReadDTO clienteResponse = new ClienteReadDTO
             {
+                Id = clienteDB.Id,
                 Telefono = clienteDB.Telefono,
                 Direccion = clienteDB.Direccion,
                 Nombre = clienteDB.Nombre
@@ -136,13 +139,13 @@ namespace MyCRUD4x.Controllers
         {
             Cliente? clienteDb = await _context.Clientes.FindAsync(id);
 
-            if(clienteDb is null )
+            if (clienteDb is null)
             {
                 return NotFound();
             }
 
             _context.Clientes.Remove(clienteDb);
-            await _context.SaveChangesAsync();  
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }

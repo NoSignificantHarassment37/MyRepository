@@ -32,73 +32,100 @@ const InputDireccion = GetElementOrThrow(
   "clientes-form__direccion-input",
   HTMLInputElement
 );
-const ClientesGlobal = PedirClientes();
-formularioClientes.addEventListener("submit", HandleSubmit);
+let editarId: number = 0;
+formularioClientes.addEventListener("submit", ManejarFormularioSubmit);
 window.addEventListener("DOMContentLoaded", CargarClientes);
 let Modo: number = 1;
+async function EliminarBotonFuncion(event: MouseEvent) {
+  /*
+  const elementoConListener = event.currentTarget;
+  if (elementoConListener instanceof HTMLButtonElement) {
+    try {
+      const serverResponse = await fetch("api/Clientes", { method: "DELETE" });
+      if(serverResponse.ok){
+        alert('Se ha eliminado el cliente correctamente.');
+      }
+    } catch (error) {
+      alert("Ha ocurrido un error al comunicarse con el servidor.");
+      console.error("Ha ocurrido un error al comunicarse con el servidor.", error);
+    }
+  }
+    */
+
+  if (!confirm("Estás seguro de eliminar este cliente?")) return;
+  const elementoConListener = event.currentTarget;
+  if (elementoConListener instanceof HTMLButtonElement) {
+    const id = elementoConListener.dataset.id;
+    const response = await fetch(`api/Clientes/${id}`, { method: "DELETE" });
+    if (response.ok) {
+      const filas: Array<HTMLTableRowElement> = Array.from(
+        tableBodyElement.children as HTMLCollectionOf<HTMLTableRowElement>
+      );
+      for (const fila of filas) {
+        if (Number(fila.dataset.id) === Number(id)) {
+          fila.remove();
+          return;
+        }
+      }
+      console.error("No hay ninguna fila con ese id.");
+    }
+    // actualizar clientes en la pagina en caso de que se halla eliminado satisfactoriamente
+
+    alert("Cliente eliminado correctamente.");
+  }
+}
+async function EditarBotonFuncion(event: MouseEvent) {
+  Modo = 2;
+  const titulo = document.getElementById("form-title");
+  if (titulo === null) {
+    console.error("No existe un elemento con ese id.");
+    throw new Error();
+  }
+  titulo.textContent = "Editar cliente";
+  const elementoConListener = event.currentTarget;
+  if (!(elementoConListener instanceof HTMLButtonElement)) {
+    console.error(
+      "El elemento al que se adjunto este listener no es un boton."
+    );
+    throw new Error();
+  }
+  const id = Number(elementoConListener.dataset.id);
+  const cliente = await ObtenerClientePorId(id);
+  ColocarCamposEnFormulario(cliente);
+  editarId = cliente.id;
+}
 function ColocarListenersDeClick() {
   const editButtons: NodeListOf<HTMLButtonElement> =
     document.querySelectorAll(".form-editar-btn");
   editButtons.forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const id = Number(btn.dataset.id);
-      const cliente = await ObtenerClientePorId(id);
-      ColocarCamposEnFormulario(cliente);
-    });
+    btn.addEventListener("click", EditarBotonFuncion);
   });
   const deleteButtons: NodeListOf<HTMLButtonElement> =
     document.querySelectorAll(".form-eliminar-btn");
-  deleteButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = Number(btn.dataset.id);
-      EliminarCliente(id);
-    });
-  });
+  deleteButtons.forEach((btn) =>
+    btn.addEventListener("click", EliminarBotonFuncion)
+  );
 }
-async function PedirClientes(): Promise<Array<Cliente>> {
+async function ObtenerClientePorId(id: number): Promise<Cliente> {
   try {
-    const RespuestaServidor = await fetch("api/Clientes");
-    try {
-      const Clientes = await RespuestaServidor.json();
-      if (Array.isArray(Clientes)) {
-        return Clientes;
-      } else {
-        return [];
-      }
-    } catch (error) {
+    const serverResponse = await fetch(`api/Clientes/${id}`);
+    const BodyResponse = await DeserializarRespuesta(serverResponse);
+    const TryParseResult = ClienteSchema.safeParse(BodyResponse);
+    if (TryParseResult.success) {
+      return TryParseResult.data;
+    } else {
       console.error(
-        "Ha ocurrido un error al deserializar la respuesta del servidor."
+        "Los datos enviados por el servidor no corresponden al esquema definido en el cliente."
       );
     }
   } catch (error) {
-    console.error("Ha ocurrido un error al pedir los clientes: ", error);
+    console.error(error);
   }
-  return [];
+  throw new Error();
 }
-async function ObtenerClientePorId(id: number): Promise<Cliente> {
-  const clientes = await ClientesGlobal;
-  for (const cliente of clientes) {
-    if (cliente.id === id) {
-      return cliente;
-    }
-  }
-  throw new Error("No existe un cliente con ese id.");
-}
-async function EditarCliente(Cliente: string) {
-  const TipoDesconocido: unknown = JSON.parse(Cliente);
-  const TryParseResult: Z.ZodSafeParseResult<Cliente> =
-    ClienteSchema.safeParse(TipoDesconocido);
-  let ClienteObj: Cliente;
-  if (TryParseResult.success) {
-    ClienteObj = TryParseResult.data as Cliente;
-  } else {
-    throw new Error(
-      "El json proporcionado como parametro no corresponde a un objeto 'Cliente'."
-    );
-  }
-  ColocarCamposEnFormulario(ClienteObj);
+async function EditarCliente() {
   const data = Object.fromEntries(new FormData(formularioClientes).entries());
-  const validar = ClienteSchema.safeParse(data);
+  const validar = clienteSchemaCreateDTO.safeParse(data);
 
   if (validar.success) {
     let cliente = validar.data;
@@ -106,7 +133,7 @@ async function EditarCliente(Cliente: string) {
     let BodyResponse: unknown;
 
     try {
-      ServerResponse = await fetch(`api/Clientes/${cliente.id}`, {
+      ServerResponse = await fetch(`api/Clientes/${editarId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -116,12 +143,40 @@ async function EditarCliente(Cliente: string) {
         }),
       });
       BodyResponse = await DeserializarRespuesta(ServerResponse);
-      outPutElement.textContent = JSON.stringify(BodyResponse);
+      const TryParseResult = ClienteSchema.safeParse(BodyResponse);
+      if (TryParseResult.success) {
+        const filas: HTMLTableRowElement[] = Array.from(
+          tableBodyElement.querySelectorAll("tr")
+        );
+        const cliente = TryParseResult.data;
+        for (const fila of filas) {
+          if (Number(fila.dataset.id) === cliente.id) {
+            fila.innerHTML = `
+          <td>${cliente.nombre}</td>
+          <td>${cliente.direccion}</td>
+          <td>${cliente.telefono}</td>
+          <td>
+            <button class="btn btn-primary form-editar-btn" data-id="${cliente.id}">Editar</button>
+            <button class="btn btn-warning form-eliminar-btn" data-id="${cliente.id}">Eliminar</button>
+          </td>`;
+          }
+        }
+      }
     } catch (error) {
       console.error("Error al hacer fetch: ", error);
     }
+  } else {
+    console.error(validar.error);
   }
+  const titulo = document.getElementById("form-title");
+  if (titulo === null) {
+    console.error("No se encontro un elemento con ese id.");
+    throw new Error();
+  }
+  titulo.textContent = "Crear cliente";
   Modo = 1;
+  formularioClientes.reset();
+  alert('Cliente modificado satisfactoriamente.');
 }
 async function EliminarCliente(id: number): Promise<void> {
   if (!confirm("Estás seguro de eliminar este cliente?")) return;
@@ -130,8 +185,8 @@ async function EliminarCliente(id: number): Promise<void> {
     const filas: Array<HTMLTableRowElement> = Array.from(
       tableBodyElement.children as HTMLCollectionOf<HTMLTableRowElement>
     );
-    for(const fila of filas){
-      if(Number(fila.dataset.id) === id){
+    for (const fila of filas) {
+      if (Number(fila.dataset.id) === id) {
         fila.remove();
         return;
       }
@@ -148,7 +203,7 @@ Modo:
 1: Crear.
 2: Editar.
 */
-async function HandleSubmit(event: SubmitEvent): Promise<void> {
+async function ManejarFormularioSubmit(event: SubmitEvent): Promise<void> {
   event.preventDefault();
   const EntradasFormulario = Object.fromEntries<FormDataEntryValue>(
     new FormData(formularioClientes).entries()
@@ -156,20 +211,17 @@ async function HandleSubmit(event: SubmitEvent): Promise<void> {
   const data = clienteSchemaCreateDTO.safeParse(EntradasFormulario);
   if (data.success) {
     if (Modo === 1) {
-      CrearCliente(data.data);
+      CrearCliente();
     } else if (Modo === 2) {
-      EditarCliente(JSON.stringify(data.data));
+      EditarCliente();
     } else {
       console.log("Modo no es ni 1 ni 2.");
     }
   } else {
-    console.log(
-      "Las entradas del formulario no son validas: ",
-      `${JSON.stringify(data.error)}`
-    );
+    console.log("Las entradas del formulario no son validas: ", data.error);
   }
 }
-function ColocarCamposEnFormulario(Cliente: Cliente): void {
+function ColocarCamposEnFormulario(Cliente: ClienteCreateDTO): void {
   InputNombre.value = Cliente.nombre;
   InputDireccion.value = Cliente.direccion;
   InputTelefono.value = Cliente.telefono;
@@ -195,9 +247,9 @@ async function CargarClientes(): Promise<void> {
           const trElement: HTMLTableRowElement = document.createElement("tr");
           trElement.dataset.id = String(cliente.id);
           trElement.innerHTML = `
-          <td>${cliente.nombre}</td>
-          <td>${cliente.direccion}</td>
-          <td>${cliente.telefono}</td>
+          <td data-nombre="${cliente.nombre}">${cliente.nombre}</td>
+          <td data-direccion="${cliente.direccion}">${cliente.direccion}</td>
+          <td data-telefono="${cliente.telefono}">${cliente.telefono}</td>
           <td>
             <button class="btn btn-primary form-editar-btn" data-id="${cliente.id}">Editar</button>
             <button class="btn btn-warning form-eliminar-btn" data-id="${cliente.id}">Eliminar</button>
@@ -215,14 +267,13 @@ async function CargarClientes(): Promise<void> {
     console.error("Error al hacer la petición al servidor.", error);
   }
 }
-async function CrearCliente(cliente: ClienteCreateDTO): Promise<void> {
+async function CrearCliente(): Promise<void> {
   const data = Object.fromEntries(new FormData(formularioClientes).entries());
   const validar = clienteSchemaCreateDTO.safeParse(data);
 
   if (validar.success) {
     let cliente = validar.data;
     let ServerResponse = new Response();
-    let BodyResponse: unknown;
 
     try {
       ServerResponse = await fetch("api/Clientes", {
@@ -230,8 +281,58 @@ async function CrearCliente(cliente: ClienteCreateDTO): Promise<void> {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cliente),
       });
-      BodyResponse = await DeserializarRespuesta(ServerResponse);
-      outPutElement.textContent = JSON.stringify(BodyResponse);
+      if (ServerResponse.ok) {
+        const clienteLocaton = ServerResponse.headers.get("Location");
+        if (clienteLocaton !== null) {
+          const unknownResponse = await fetch(clienteLocaton);
+          const unknownBody = await DeserializarRespuesta(unknownResponse);
+          const validarClienteResult = ClienteSchema.safeParse(unknownBody);
+          if (validarClienteResult.success) {
+            const nuevoCliente = validarClienteResult.data;
+            const trElement: HTMLTableRowElement = document.createElement("tr");
+            trElement.dataset.id = String(nuevoCliente.id);
+            trElement.innerHTML = `
+          <td>${nuevoCliente.nombre}</td>
+          <td>${nuevoCliente.direccion}</td>
+          <td>${nuevoCliente.telefono}</td>
+          <td>
+            <button class="btn btn-primary form-editar-btn" data-id="${nuevoCliente.id}">Editar</button>
+            <button class="btn btn-warning form-eliminar-btn" data-id="${nuevoCliente.id}">Eliminar</button>
+          </td>`;
+            const botonEditar = trElement.querySelector(".form-editar-btn");
+            const botonEliminar = trElement.querySelector(".form-eliminar-btn");
+            if (botonEliminar instanceof HTMLButtonElement) {
+              botonEliminar.addEventListener("click", EliminarBotonFuncion);
+            }
+            if (botonEditar instanceof HTMLButtonElement) {
+              botonEditar.addEventListener("click", EditarBotonFuncion);
+            }
+            tableBodyElement.appendChild(trElement);
+            const filas: Array<HTMLTableRowElement> = Array.from(
+              tableBodyElement.children as HTMLCollectionOf<HTMLTableRowElement>
+            );
+            for (const fila of filas) {
+              if (Number(fila.dataset.id) === nuevoCliente.id) {
+              }
+            }
+          } else {
+            console.error(
+              "Los datos que envio el servidor no corresponden al esquema definido en el cliente.",
+              validarClienteResult.error,
+              unknownBody
+            );
+          }
+        } else {
+          console.error(
+            "El servidor no ha enviado la localizacion del nuevo cliente."
+          );
+        }
+      } else {
+        console.error(
+          "La respuesta del servidor no fue 200-299.",
+          ServerResponse
+        );
+      }
     } catch (error) {
       console.error("Error al hacer fetch: ", error);
     }
