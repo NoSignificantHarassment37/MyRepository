@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
-
+using Pruebasdotnet8.Validadores;
+using Pruebasdotnet8.Models;
+using FluentValidation.Results;
 public static class GuidUtils
 {
     public static Guid CreateVersion7()
@@ -28,10 +30,22 @@ public static class GuidUtils
     }
     public static void Main()
     {
-        for(int i = 0;i < 11; i++)
+        var persona = new Persona
         {
-            Guid id = CreateVersion7();
-            Console.WriteLine(id);
+            Nombre = "Ma",
+            Email = "mateoatehortua1111",
+            Edad = -1
+        };
+
+        PersonaValidator validadorDePersonas = new();
+        ValidationResult validarPersonaResult = validadorDePersonas.Validate(persona);
+
+        if (!validarPersonaResult.IsValid)
+        {
+            foreach(var error in validarPersonaResult.Errors)
+            {
+                Console.WriteLine(error);
+            }
         }
     }
 }
