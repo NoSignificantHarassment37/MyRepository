@@ -47,6 +47,7 @@ function controlDeFlujo(): void {
     for (let i = 0; i <= 10; i++) {
         console.log(i);
     }
+    // Ejecuta un bucle sobre una coleccion de valores 
     const nombre: string = "Mateo"
     for (let m of nombre) {
         console.log(m);

@@ -145,3 +145,4 @@ dist
 ASP.NET/MyCRUD4x/MyCRUD4x/wwwroot/scripts/*
 # Pero no ignores el archivo de marcador
 !ASP.NET/MyCRUD4x/MyCRUD4x/wwwroot/scripts/.gitkeep
+/NestJs/MF/prisma/generated
