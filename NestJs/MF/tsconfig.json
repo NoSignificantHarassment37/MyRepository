@@ -1,50 +1,21 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "ES2022",
-    "lib": ["ES2022"],
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "sourceMap": true,
     "declaration": true,
-    "declarationMap": true,
-    
-    // NestJS required options
-    "experimentalDecorators": true,
+    "removeComments": true,
     "emitDecoratorMetadata": true,
-    "strict": true,
-    "skipLibCheck": true,
-    
-    // Type checking
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    
-    // Module resolution
-    "esModuleInterop": true,
+    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    
-    // TypeScript strict mode
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    
-    // Additional
-    "types": ["node"],
-    "isolatedModules": true,
-    "verbatimModuleSyntax": false,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
     "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
+  }
 }
