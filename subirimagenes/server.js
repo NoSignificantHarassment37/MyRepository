@@ -8,7 +8,7 @@ require('dotenv').config();
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 const DATA_FILE = path.join(__dirname, 'data', 'images.json');
 
 // Configurar Supabase
