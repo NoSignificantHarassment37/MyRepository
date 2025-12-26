@@ -1,0 +1,1 @@
+import { PrismaClientKnownRequestError } from "../generated/prisma/internal/prismaNamespace.js";
