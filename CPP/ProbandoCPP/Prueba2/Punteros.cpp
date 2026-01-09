@@ -3,16 +3,16 @@
 
 using namespace std;
 
-void Punteros()
+void PunterosYMemoria()
 {
 	/*
 	Un puntero es una variable que guarda la direccion en memoria de otra variable.
 	Imagina la memoria como una ciudad real con sus carreras y sus calles, cada casa es un bloque de memoria, un puntero es la direccion de una casa.
 
 	Desde siempre eso es lo que se hace al crear una variable: reserva memoria en el stack/heap, cuando asignamos/cambiamos el valor, lo que se hace es obtener la direccion
-	en donde está ese objeto.
+	en donde estï¿½ ese objeto.
 
-	De momento las utilidades parecen pocas pero más adelante voy a investigar para que sirven.
+	De momento las utilidades parecen pocas pero mï¿½s adelante voy a investigar para que sirven.
 	*/
 
 	int a = 0;
@@ -29,11 +29,11 @@ void Punteros()
 	/*
 	Explicando las tres cosas nuevas:
 	int* declara una variable que es un puntero a un int.
-	&a obtiene la dirección en memoria de a
-	*p le dice que traiga lo que hay en la dirección que p guarda.
+	&a obtiene la direcciï¿½n en memoria de a
+	*p le dice que traiga lo que hay en la direcciï¿½n que p guarda.
 	*/
 
-	int* p = &a; // No es una copia del valor, p apunta a la direccion en memoria a la que 'a' apunta. Por eso cuando la cambio, parece que p también cambia.
+	int* p = &a; // No es una copia del valor, p apunta a la direccion en memoria a la que 'a' apunta. Por eso cuando la cambio, parece que p tambiï¿½n cambia.
 
 	cout << "Valor de p: " << *p << endl;
 
@@ -42,7 +42,7 @@ void Punteros()
 	cout << "Valor de a: " << a << endl;
 	cout << "Valor de p: " << *p << endl;
 
-	// Referencias: son alias para variables, no se para que se usarían, además de que no se puede cambiar a que variable apuntan.
+	// Referencias: son alias para variables, no se para que se usarï¿½an, ademï¿½s de que no se puede cambiar a que variable apuntan.
 	
 	int& alias = a;
 

@@ -1,6 +1,10 @@
 #include <iostream>
 #include <chrono>
-
+#include "Punteros.h"
+#include "Const.h"
+#include "Clases.h"
+using std::cout;
+using std::endl;
 class Cronometro {
     using clock = std::chrono::steady_clock;
     std::chrono::time_point<clock> inicio;
@@ -38,6 +42,7 @@ public:
 };
 
 int main() {
+    /*
     Cronometro cr;
     cr.iniciar();
 
@@ -51,5 +56,9 @@ int main() {
 
     std::cout << "Tiempo real transcurrido: " << cr.tiempo() << " nanosegundos\n";
 
+    return 0;
+    */
+    PunterosYMemoriaAvanzado();
+    Constantes();
     return 0;
 }

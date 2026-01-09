@@ -2,7 +2,7 @@ from utils import try_parse
 
 while True:
     number1 = 0
-    number2 = 0 
+    number2 = 0
     while True:
         tuple = try_parse(input("Introduce un numero."), float)
         if not tuple[1]:
@@ -11,7 +11,7 @@ while True:
         else:
             number1 = tuple[0]
             break
-    
+
     while True:
         tuple = try_parse(input("Introduce otro numero."), float)
         if not tuple[1]:
@@ -22,7 +22,9 @@ while True:
             break
 
     while True:
-        option = input("Escribe: \n1 - sumar\n2 - restar\n3 - multiplicar\n4 - dividir\n")
+        option = input(
+            "Escribe: \n1 - sumar\n2 - restar\n3 - multiplicar\n4 - dividir\n"
+        )
 
         match option:
             case "1":

@@ -1,6 +1,13 @@
-a = (4, 6, 9, 3, 6, 19)
-b = list(a)
-print(a)
-print(b)
-
-diccionario = {1, 2, 3, 4, 5}
+from pathlib import Path
+import random
+a = 0
+mayoresA50 = 0
+menoresA50 = 0
+for i in range(1, 10001):
+    a = random.randint(1, 100)
+    if(a > 50):
+        mayoresA50 += 1
+    else:
+        menoresA50 += 1
+        
+print(menoresA50, mayoresA50)

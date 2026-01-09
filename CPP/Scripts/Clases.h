@@ -1,0 +1,2 @@
+struct TipoDeDocumento;
+class Persona;
