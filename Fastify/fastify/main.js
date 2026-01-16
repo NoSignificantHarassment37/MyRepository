@@ -9,6 +9,10 @@ import firstRoute from "./routes/our-first-route.js";
 const fastify = Fastify({
   logger: true,
 });
+fastify.decorateRequest("user", "");
+fastify.addHook("onRequest", function (request, reply) {
+  console.log(request.ip);
+});
 fastify.register(dbConnector);
 fastify.register(firstRoute);
 fastify.listen({ port: 3000 }, function (err, address) {

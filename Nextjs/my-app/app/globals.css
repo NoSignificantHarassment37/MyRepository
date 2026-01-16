@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/*
+tema claro:
+
+--text: #061a12;
+--background: #f0fcf7;
+--primary: #2ed396;
+--secondary: #8ad1e6;
+--accent: #6ba2df;
+
+--text: #f0fcf7;
+--background: #061a12;
+--primary: #2ed396; 
+--secondary: #264f5c; 
+--accent: #2d445e;
+*/
