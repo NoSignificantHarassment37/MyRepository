@@ -3,6 +3,8 @@
 #include "Punteros.h"
 #include "Const.h"
 #include "Clases.h"
+#include "Tests.h"
+
 using std::cout;
 using std::endl;
 class Cronometro {
@@ -58,7 +60,9 @@ int main() {
 
     return 0;
     */
-    PunterosYMemoriaAvanzado();
-    Constantes();
+    // PunterosYMemoriaAvanzado();
+    // Constantes();
+    // Clases();
+    Tests();
     return 0;
 }

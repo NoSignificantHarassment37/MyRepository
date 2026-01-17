@@ -1,5 +1,5 @@
 TARGET = main
-SRC = main.cpp Punteros.cpp Const.cpp Clases.cpp
+SRC = main.cpp Punteros.cpp Const.cpp Clases.cpp Tests.cpp
 CXX = g++
 CXXFLAGS = -Wall -Wextra -g
 

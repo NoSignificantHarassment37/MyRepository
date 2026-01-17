@@ -1,53 +1,26 @@
+#include <iostream>
 #include <string>
 #include <format>
 #include <string>
 #include <sstream>
 #include <vector>
+#include <memory>
+#include "Clases.h"
+        
+Persona::Persona(const std::string& _nombre, const std::string& _numeroDeDocumento, TipoDeDocumento _tipoDeDocumento)
+    : nombre(_nombre), numeroDeDocumento(_numeroDeDocumento), tipoDeDocumento(_tipoDeDocumento) {}
 
-template<typename T>
-std::string toString(const T& value) {
-    std::stringstream ss;
-    ss << value;
-    return ss.str();
+std::string Persona::toString() const {
+    return myFormat("Nombre: {}, Documento: {}, Tipo de documento: {}", nombre, numeroDeDocumento, tipoDeDocumento);
 }
 
-// Función tipo format casera
-template<typename... Args>
-std::string myFormat(const std::string& fmt, Args... args) {
-    std::vector<std::string> values = { toString(args)... };
-    std::string result;
-    size_t argIndex = 0;
-
-    for (size_t i = 0; i < fmt.size(); ++i) {
-        if (fmt[i] == '{' && i + 1 < fmt.size() && fmt[i + 1] == '}') {
-            if (argIndex < values.size()) {
-                result += values[argIndex++];
-            } else {
-                result += "{}"; // si no hay argumento, deja los corchetes
-            }
-            ++i; // saltar el '}'
-        } else {
-            result += fmt[i];
-        }
-    }
-
-    return result;
+void Persona::cambiarTipoDeDocumento(TipoDeDocumento nuevoTipo) {
+    tipoDeDocumento = nuevoTipo;
 }
 
-enum class TipoDeDocumento {
-    Tarjeta_De_Identidad,
-    Cedula,
-    Permiso_De_Permanencia
-};
-class Persona {
-    std::string nombre;
-    std::string numeroDeDocumento;
-    TipoDeDocumento tipoDeDocumento;
-    public:
-        Persona(const std::string& _nombre, const std::string& _numeroDeDocumento, const TipoDeDocumento& _tipoDeDocumento):
-        nombre(_nombre), numeroDeDocumento(_numeroDeDocumento), tipoDeDocumento(_tipoDeDocumento){}
-        std::string toString(){
-            std::string temp = myFormat("Nombre: {}, Documento: {}, Tipo de documento: {}", nombre, numeroDeDocumento, tipoDeDocumento);
-            return temp;
-        }
-};
+void Clases() {
+    std::cout << "Entrando a clases" << std::endl; 
+    std::unique_ptr persona = std::make_unique<Persona>("Mateo", "1033260098", TipoDeDocumento::Tarjeta_De_Identidad); // Esto se libera al salir del scope.
+    std::cout << persona->toString() << std::endl; // unique_ptr tiene el operador '->' que sirve para acceder a miembros de la instancia interna.
+    std::cout << "Saliendo de Clases" << std::endl;
+}
