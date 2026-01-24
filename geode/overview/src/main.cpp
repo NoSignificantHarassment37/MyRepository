@@ -61,13 +61,18 @@ class $modify(MyMenuLayer, MenuLayer) {
 			*/
 			menu_selector(MyMenuLayer::onMyButton)
 		);
-
+		auto myOtherButton = CCMenuItemSpriteExtra::create(
+			CCSprite::createWithSpriteFrameName("GJ_likeBtn_001.png"),
+			this,
+			menu_selector(MyMenuLayer::onMyButton)
+		);
 		/**
 		 * Here we access the `bottom-menu` node by its ID, and add our button to it.
 		 * Node IDs are a Geode feature, see this page for more info about it:
 		 * https://docs.geode-sdk.org/tutorials/nodetree
 		*/
 		auto menu = this->getChildByID("bottom-menu");
+		menu->addChild(myOtherButton);
 		menu->addChild(myButton);
 
 		/**
@@ -75,7 +80,7 @@ class $modify(MyMenuLayer, MenuLayer) {
 		 * your mod id followed by a slash. This is good practice for setting your own node ids.
 		*/
 		myButton->setID("my-button"_spr);
-
+		myOtherButton->setID("my_other_button"_spr);
 		/**
 		 * We update the layout of the menu to ensure that our button is properly placed.
 		 * This is yet another Geode feature, see this page for more info about it:

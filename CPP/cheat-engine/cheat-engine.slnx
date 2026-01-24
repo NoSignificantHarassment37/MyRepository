@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="cheat-engine/cheat-engine.vcxproj" Id="0d33275c-c0fd-4cbb-aee1-0b102c70ee18" />
+</Solution>
