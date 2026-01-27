@@ -146,3 +146,113 @@ ASP.NET/MyCRUD4x/MyCRUD4x/wwwroot/scripts/*
 # Pero no ignores el archivo de marcador
 !ASP.NET/MyCRUD4x/MyCRUD4x/wwwroot/scripts/.gitkeep
 /NestJs/MF/prisma/generated
+
+## =========================
+## Visual Studio
+## =========================
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin)
+*.userprefs
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio cache
+.vs/
+
+# Build logs
+*.log
+
+# MSBuild binary and generated files
+*.tlog
+*.lastbuildstate
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+TestResults/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET
+*.Publish.xml
+*.pubxml
+*.publishproj
+
+# Web deploy
+*.deploy.cmd
+*.deploy.readme
+
+# Azure
+.azure/
+
+# Packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+.nuget/packages/
+
+# DotCover
+*.dotCover
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# OS generated files
+.DS_Store
+
+# Backup & temp files
+*.bak
+*.tmp
+*.temp
+*.old
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Profiling
+*.vsp
+*.vspx
+*.sap
+
+# Crash dumps
+*.dmp
