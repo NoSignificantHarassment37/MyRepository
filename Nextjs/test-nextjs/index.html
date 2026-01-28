@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureVault - Inicio</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --text: #d0cdff;
+        --background: #00000e;
+        --primary: #8073fe;
+        --accent: #d217fd;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+      body {
+        background-color: var(--background);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .container {
+        text-align: center;
+        padding: 2rem;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientMove 5s linear infinite;
+      }
+      @keyframes gradientMove {
+        0% {
+          background-position: 0%;
+        }
+        50% {
+          background-position: 100%;
+        }
+        100% {
+          background-position: 0%;
+        }
+      }
+      .tagline {
+        font-size: 1.2rem;
+        opacity: 0.8;
+        margin-bottom: 2rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        margin: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--text);
+        background-color: var(--primary);
+        border: 2px solid var(--primary);
+        border-radius: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .btn:hover {
+        background-color: var(--accent);
+        border-color: var(--accent);
+        transform: scale(1.05);
+      }
+      .material-icons {
+        font-size: 1.3rem;
+      }
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>SecureVault</h1>
+      <p class="tagline">Tu bóveda de contraseñas segura y accesible.</p>
+      <a href="#" class="btn"
+        ><span class="material-icons">vpn_key</span>Crear Vault</a
+      >
+      <a href="#" class="btn"
+        ><span class="material-icons">folder_open</span>Cargar Vault</a
+      >
+    </div>
+    <section>
+      <h2>Sobre el proyecto</h2>
+      <article>
+        <h3>Introducción</h3>
+        <p>
+          Este es mi password manager personal, de momento,
+          <strong>NO</strong> es una aplicación enterprise, es sólo un servicio
+          abierto al público.
+        </p>
+      </article>
+      <article>
+        <h3>El por qué del proyecto</h3>
+        <ul>
+          <li>Satifacer mis propias necesidades</li>
+          <li>Aprendizaje</li>
+          <li>Portafolio</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Necesidades que satiface</h3>
+        <ul>
+          <li>Poder de decisión sobre la información</li>
+          <li>Ser lo más multiplataforma posible</li>
+          <li>Contar con un buen cifrado de información</li>
+        </ul>
+      </article>
+    </section>
+    <section>
+      <h2>Documentación técnica</h2>
+      <article>
+        <h3>Frontend</h3>
+        <p>
+          El stack del frontend no fué escogido por ser la mejor opción,
+          sino porque quería aprenderlo desde ya porque luego lo usaré y
+          prefiero ir aprendiendo.
+        </p>
+        <ul>
+          <li>Next.js 16.1.4</li>
+          <li>React 19.2.3</li>
+          <li>Tailwind 4</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Criptografía</h3>
+        <p>
+          El stack de criptografía lo escogí pensando en ser lo más seguro
+          posible sin comprometer aspectos como rendimiento y multiplataforma
+        </p>
+        <ul>
+          <li>Argon2id</li>
+          <li>AES - CGM</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Backend</h3>
+        <p>
+          La aplicación se ejecuta 100% en el cliente: no se comunica con
+          dominios externos, a pesar que de que está hecha con Next.js.
+        </p>
+      </article>
+    </section>
+    <section>
+      <h2>Manual de usuario</h2>
+      <article>
+        <h3>Recomendaciones</h3>
+        <p>
+          Si decides correr el riesgo de probarlo, entonces te dejo
+          recomendaciones:
+        </p>
+        <ul>
+          <li>
+            <p>
+              A pesar de que la información sale cifrada, te recomiendo que
+              sigas pensando como si <strong>NO.</strong> estuviese cifrada. El
+              cifrado protege la información, pero es la última capa de defensa.
+            </p>
+          </li>
+          <li>
+            Deja el menor tiempo posible el vault abierto, cualquier persona o
+            programa prodría robarte tus contraseñas y la clave maestra.
+          </li>
+          <li>
+            <strong>Usa los siguientes navegadores:</strong>
+            <ul>
+              <li>Chrome 111 o versiones superiores.</li>
+              <li>Microsoft Edge 111 o versiones superiores.</li>
+              <li>Firefox 111 o versiones superiores.</li>
+              <li>Safari 16.4 o versiones superiores.</li>
+            </ul>
+          </li>
+          <li>
+            No lo uses en dispositivos que presumes que puedan tener malware de
+            cualquier tipo.
+          </li>
+        </ul>
+      </article>
+    </section>
+  </body>
+</html>

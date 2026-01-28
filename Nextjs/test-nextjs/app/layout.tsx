@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { ThemeInitializer } from "./_components/ChangeTheme";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -24,9 +19,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SecureVault - Inicio</title>
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`antialiased ${inter.variable}`}
       >
+        <ThemeInitializer></ThemeInitializer>
         {children}
       </body>
     </html>
