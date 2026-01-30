@@ -1,9 +1,12 @@
 "use client";
 import { useEffect } from "react";
-export default function ChangeTheme() {
+export type ChangeThemeParams = {
+  children: React.ReactNode;
+};
+export default function ChangeThemeButton({ children }: ChangeThemeParams) {
   /*Cambia la paleta de colores de la pagina (oscuro - claro)*/
 
-  function toggleTheme() {
+  function handlerClickEvent() {
     const current = document.documentElement.dataset.theme;
     const next = current === "dark" ? "light" : "dark";
 
@@ -11,26 +14,7 @@ export default function ChangeTheme() {
     localStorage.setItem("theme", next);
   }
 
-  return (
-    <>
-      <button onClick={toggleTheme}>Click para cambiar el tema</button>
-    </>
-  );
-}
-function getInitialTheme(): "light" | "dark" {
-  const stored = localStorage.getItem("theme");
-  if (stored === "light" || stored === "dark") {
-    return stored;
-  }
-
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  return prefersDark ? "dark" : "light";
-}
-function applyTheme(theme: "light" | "dark") {
-  const root = document.documentElement;
-  root.classList.remove("light", "dark");
-  root.classList.add(theme);
+  return <button onClick={handlerClickEvent}>{children}</button>;
 }
 
 export function ThemeInitializer() {

@@ -1,20 +1,28 @@
 import React from "react";
-import ChangeTheme from "./_components/ChangeTheme";
+import ChangeThemeButton from "./_components/ChangeThemeButton";
 import DocsArticle from "./_components/Article";
 import DocsSection from "./_components/Section";
+import NavigationButton from "./_components/NavigationButton";
 export default function Index(): React.ReactNode {
   return (
-    <>
-    <ChangeTheme></ChangeTheme>
+    <main>
+      <ChangeThemeButton>Cambiar tema</ChangeThemeButton>
       <div className="container">
         <h1>SecureVault</h1>
-        <p className="tagline">Tu bóveda de contraseñas segura y accesible.</p>
-        <a href="#" className="btn">
-          <span className="material-icons">vpn_key</span>Crear Vault
-        </a>
-        <a href="#" className="btn">
-          <span className="material-icons">folder_open</span>Cargar Vault
-        </a>
+        <p className="tagline font-bold text-4xl">Tu bóveda de contraseñas segura y accesible.</p>
+        <NavigationButton route="/auth">
+          <span className="inline-flex items-center gap-2">
+            <span className="material-icons text-lg leading-none text-white">vpn_key</span>
+            <span className="leading-none text-white">Crear Vault</span>
+          </span>
+        </NavigationButton>
+
+        <NavigationButton route="/auth">
+          <span className="inline-flex items-center gap-2">
+            <span className="material-icons text-lg leading-none text-white">folder_open</span>
+            <span className="leading-none text-white">Cargar vault</span>
+          </span>
+        </NavigationButton>
       </div>
       <DocsSection title="Sobre el proyecto">
         <DocsArticle title={"Introducción"}>
@@ -83,6 +91,6 @@ export default function Index(): React.ReactNode {
           </ul>
         </DocsArticle>
       </DocsSection>
-    </>
+    </main>
   );
 }

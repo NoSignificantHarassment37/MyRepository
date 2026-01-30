@@ -8,7 +8,7 @@ export type DocsSectionParams = {
 export default function DocsSection({ children, title }: DocsSectionParams) {
   return (
     <section className="bg-background">
-      <h2 className="text-text">{title}</h2>
+      <h2 className="text-primary">{title}</h2>
       {children}
     </section>
   );

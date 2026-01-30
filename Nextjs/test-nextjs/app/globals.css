@@ -23,8 +23,32 @@ body {
   background: var(--background);
   color: var(--text);
 }
-
+:root[data-theme="dark"] strong {
+  color: #ffffff;
+  font-weight: bold;
+}
+:root[data-theme="light"] strong {
+  color: black;
+  font-weight: bold;
+}
+:root[data-theme="light"] h3 {
+  color: black;
+  font-weight: bold;
+}
+:root[data-theme="dark"] h3 {
+  color: #ffffff;
+  font-weight: bold;
+}
+:root[data-theme="light"] h2 {
+  color: black;
+  font-weight: bold;
+}
+:root[data-theme="dark"] h2 {
+  color: #ffffff;
+  font-weight: bold;
+}
 @theme inline {
   --color-background: var(--background);
   --color-text: var(--text);
+  --color-primary: var(--primary);
 }

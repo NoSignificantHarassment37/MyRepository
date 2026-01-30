@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeInitializer } from "./_components/ChangeTheme";
+import { ThemeInitializer } from "./_components/ChangeThemeButton";
 import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],

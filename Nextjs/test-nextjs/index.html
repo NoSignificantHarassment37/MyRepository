@@ -1,204 +1,706 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>Local Password Vault</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SecureVault - Inicio</title>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
     <style>
-      :root {
-        --text: #d0cdff;
-        --background: #00000e;
-        --primary: #8073fe;
-        --accent: #d217fd;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", sans-serif;
-      }
+      /* MÍNIMO CSS para que sea usable */
       body {
-        background-color: var(--background);
-        color: var(--text);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
+        font-family: sans-serif;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
       }
-      .container {
-        text-align: center;
-        padding: 2rem;
+      section {
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
       }
-      h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        background: linear-gradient(90deg, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradientMove 5s linear infinite;
+      input,
+      button,
+      textarea {
+        margin: 5px 0;
+        padding: 8px;
+        width: 100%;
+        box-sizing: border-box;
       }
-      @keyframes gradientMove {
-        0% {
-          background-position: 0%;
-        }
-        50% {
-          background-position: 100%;
-        }
-        100% {
-          background-position: 0%;
-        }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
       }
-      .tagline {
-        font-size: 1.2rem;
-        opacity: 0.8;
-        margin-bottom: 2rem;
+      button:hover {
+        background: #0056b3;
       }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 1rem 2rem;
-        margin: 0.5rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: var(--text);
-        background-color: var(--primary);
-        border: 2px solid var(--primary);
-        border-radius: 10px;
-        text-decoration: none;
-        transition: all 0.3s ease;
+      .error {
+        color: #dc3545;
       }
-      .btn:hover {
-        background-color: var(--accent);
-        border-color: var(--accent);
-        transform: scale(1.05);
+      .success {
+        color: #28a745;
       }
-      .material-icons {
-        font-size: 1.3rem;
+      .entry {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
       }
-      @media (max-width: 480px) {
-        h1 {
-          font-size: 2.2rem;
-        }
-        .btn {
-          width: 100%;
-          justify-content: center;
-        }
+      .hidden {
+        display: none;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>SecureVault</h1>
-      <p class="tagline">Tu bóveda de contraseñas segura y accesible.</p>
-      <a href="#" class="btn"
-        ><span class="material-icons">vpn_key</span>Crear Vault</a
-      >
-      <a href="#" class="btn"
-        ><span class="material-icons">folder_open</span>Cargar Vault</a
-      >
-    </div>
-    <section>
-      <h2>Sobre el proyecto</h2>
-      <article>
-        <h3>Introducción</h3>
-        <p>
-          Este es mi password manager personal, de momento,
-          <strong>NO</strong> es una aplicación enterprise, es sólo un servicio
-          abierto al público.
-        </p>
-      </article>
-      <article>
-        <h3>El por qué del proyecto</h3>
-        <ul>
-          <li>Satifacer mis propias necesidades</li>
-          <li>Aprendizaje</li>
-          <li>Portafolio</li>
-        </ul>
-      </article>
-      <article>
-        <h3>Necesidades que satiface</h3>
-        <ul>
-          <li>Poder de decisión sobre la información</li>
-          <li>Ser lo más multiplataforma posible</li>
-          <li>Contar con un buen cifrado de información</li>
-        </ul>
-      </article>
+    <h1>🔐 Local Password Vault</h1>
+
+    <!-- SECCIÓN 1: Inicio -->
+    <section id="startup">
+      <h2>Welcome</h2>
+      <p>
+        <strong>Rules:</strong> All encryption happens locally. Nothing is sent
+        online. Close tab = data gone.
+      </p>
+
+      <div id="file-info" class="hidden">
+        <p>Loaded file: <span id="filename">none</span></p>
+      </div>
+
+      <button id="btn-load">📂 Load existing vault</button>
+      <button id="btn-create">🆕 Create new vault</button>
     </section>
-    <section>
-      <h2>Documentación técnica</h2>
-      <article>
-        <h3>Frontend</h3>
-        <p>
-          El stack del frontend no fué escogido por ser la mejor opción,
-          sino porque quería aprenderlo desde ya porque luego lo usaré y
-          prefiero ir aprendiendo.
-        </p>
-        <ul>
-          <li>Next.js 16.1.4</li>
-          <li>React 19.2.3</li>
-          <li>Tailwind 4</li>
-        </ul>
-      </article>
-      <article>
-        <h3>Criptografía</h3>
-        <p>
-          El stack de criptografía lo escogí pensando en ser lo más seguro
-          posible sin comprometer aspectos como rendimiento y multiplataforma
-        </p>
-        <ul>
-          <li>Argon2id</li>
-          <li>AES - CGM</li>
-        </ul>
-      </article>
-      <article>
-        <h3>Backend</h3>
-        <p>
-          La aplicación se ejecuta 100% en el cliente: no se comunica con
-          dominios externos, a pesar que de que está hecha con Next.js.
-        </p>
-      </article>
+
+    <!-- SECCIÓN 2: Autenticación -->
+    <section id="auth" class="hidden">
+      <h2>Unlock Vault</h2>
+
+      <label>Master password:</label>
+      <input
+        type="password"
+        id="master-password"
+        autocomplete="off"
+        placeholder="Enter your master password"
+      />
+
+      <div id="auth-error" class="error hidden"></div>
+
+      <br />
+      <button id="btn-unlock">🔓 Unlock</button>
+      <button id="btn-back">⬅ Back</button>
     </section>
-    <section>
-      <h2>Manual de usuario</h2>
-      <article>
-        <h3>Recomendaciones</h3>
-        <p>
-          Si decides correr el riesgo de probarlo, entonces te dejo
-          recomendaciones:
-        </p>
-        <ul>
-          <li>
-            <p>
-              A pesar de que la información sale cifrada, te recomiendo que
-              sigas pensando como si <strong>NO.</strong> estuviese cifrada. El
-              cifrado protege la información, pero es la última capa de defensa.
-            </p>
-          </li>
-          <li>
-            Deja el menor tiempo posible el vault abierto, cualquier persona o
-            programa prodría robarte tus contraseñas y la clave maestra.
-          </li>
-          <li>
-            <strong>Usa los siguientes navegadores:</strong>
-            <ul>
-              <li>Chrome 111 o versiones superiores.</li>
-              <li>Microsoft Edge 111 o versiones superiores.</li>
-              <li>Firefox 111 o versiones superiores.</li>
-              <li>Safari 16.4 o versiones superiores.</li>
-            </ul>
-          </li>
-          <li>
-            No lo uses en dispositivos que presumes que puedan tener malware de
-            cualquier tipo.
-          </li>
-        </ul>
-      </article>
+
+    <!-- SECCIÓN 3: Vault desbloqueado -->
+    <section id="vault" class="hidden">
+      <h2>📦 Your Password Vault</h2>
+
+      <div id="vault-status">
+        <p>Entries: <span id="entry-count">0</span></p>
+      </div>
+
+      <!-- Agregar nueva entrada -->
+      <div id="add-entry">
+        <h3>➕ Add New Entry</h3>
+        <input
+          type="text"
+          id="new-platform"
+          placeholder="Platform (e.g., Google)"
+        />
+        <input type="text" id="new-email" placeholder="Email" />
+        <input
+          type="text"
+          id="new-username"
+          placeholder="Username (optional)"
+        />
+        <input type="password" id="new-password" placeholder="Password" />
+        <textarea
+          id="new-recovery"
+          placeholder="Recovery codes (one per line)"
+        ></textarea>
+        <button id="btn-add">Add Entry</button>
+      </div>
+
+      <!-- Lista de entradas -->
+      <div id="entries-list"></div>
+
+      <!-- Acciones del vault -->
+      <br />
+      <button id="btn-save">💾 Save & Download Vault</button>
+      <button id="btn-lock">🔒 Lock Vault</button>
+      <button id="btn-clear">🗑️ Clear All (DANGER)</button>
     </section>
+    <dialog id="password-modal">
+      <form method="dialog">
+        <h3>Ponle una contraseña al vault nuevo</h3>
+        <input
+          type="password"
+          id="modalPass"
+          placeholder="Contraseña"
+          required
+        />
+
+        <div class="actions">
+          <button type="button" id="cancelBtn">Cancelar</button>
+          <button type="submit" id="confirmBtn">Guardar</button>
+        </div>
+      </form>
+    </dialog>
+    <script>
+      /*
+      Algunos conceptos:
+      Base64: Es una 
+      Uint8Array: array de números enteros sin signo, entre 0 - 255, de forma que cada elemento representa un byte.
+      */
+      function uint8ToBase64(u8) {
+        return btoa(String.fromCharCode(...u8));
+      }
+
+      function base64ToUint8(base64) {
+        const binary = atob(base64);
+        const u8 = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+          u8[i] = binary.charCodeAt(i);
+        }
+        return u8;
+      }
+
+      class CryptoContext {
+        derivedKey;
+        salt;
+        constructor() {}
+        // Recibe la password en string JS, pero el salt tiene que ser un uint8array de CRYPTO_CONFIG.saltLenght de longitud.
+        async init(password, salt) {
+          this.salt = salt;
+          this.derivedKey = await this.deriveKey(password);
+        }
+        async deriveKey(password) {
+          // Convertir password a ArrayBuffer
+          const encoder = new TextEncoder();
+          const passwordBuffer = encoder.encode(password);
+
+          // Importar password como clave
+          const importedKey = await crypto.subtle.importKey(
+            "raw",
+            passwordBuffer,
+            "PBKDF2",
+            false,
+            ["deriveKey"],
+          );
+
+          // Derivar clave usando PBKDF2
+          const derivedKey = await crypto.subtle.deriveKey(
+            {
+              name: "PBKDF2",
+              salt: this.salt,
+              iterations: CRYPTO_CONFIG.iterations,
+              hash: "SHA-256",
+            },
+            importedKey,
+            {
+              name: CRYPTO_CONFIG.algorithm,
+              length: CRYPTO_CONFIG.keyLength * 8,
+            },
+            false,
+            ["encrypt", "decrypt"],
+          );
+
+          return derivedKey;
+        }
+        async encrypt(data) {
+          try {
+            // Generar IV aleatorio
+            const iv = crypto.getRandomValues(
+              new Uint8Array(CRYPTO_CONFIG.ivLength),
+            );
+
+            // Convertir datos a JSON
+            const dataStr = JSON.stringify(state.decryptedData);
+            const encoder = new TextEncoder();
+            const dataBuffer = encoder.encode(dataStr);
+            // Cifrar
+            console.log(this.salt, iv);
+            console.log(uint8ToBase64(this.salt), uint8ToBase64(iv));
+            const encryptedBuffer = await crypto.subtle.encrypt(
+              {
+                name: CRYPTO_CONFIG.algorithm,
+                iv: iv,
+              },
+              this.derivedKey,
+              dataBuffer,
+            );
+
+            // Combinar: salt + iv + datos cifrados
+            const combined = new Uint8Array(
+              this.salt.length + iv.length + encryptedBuffer.byteLength,
+            );
+            combined.set(this.salt, 0);
+            combined.set(iv, this.salt.length);
+            combined.set(
+              new Uint8Array(encryptedBuffer),
+              this.salt.length + iv.length,
+            );
+
+            // Convertir a base64 para descarga
+            return btoa(String.fromCharCode(...combined));
+          } catch (error) {
+            console.error("Encryption error:", error);
+            throw new Error("Failed to encrypt vault");
+          }
+        }
+        async decrypt() {
+          try {
+            // Decodificar base64
+            const binaryStr = atob(state.vaultFile);
+            const encryptedData = new Uint8Array(binaryStr.length);
+            for (let i = 0; i < binaryStr.length; i++) {
+              encryptedData[i] = binaryStr.charCodeAt(i);
+            }
+
+            // Extraer componentes
+            const iv = encryptedData.slice(
+              CRYPTO_CONFIG.saltLength,
+              CRYPTO_CONFIG.saltLength + CRYPTO_CONFIG.ivLength,
+            );
+            const ciphertext = encryptedData.slice(
+              CRYPTO_CONFIG.saltLength + CRYPTO_CONFIG.ivLength,
+            );
+            const decoder = new TextDecoder();
+            console.log(this.salt, iv);
+            console.log(uint8ToBase64(this.salt), uint8ToBase64(iv));
+            // Descifrar
+            const decryptedBuffer = await crypto.subtle.decrypt(
+              {
+                name: CRYPTO_CONFIG.algorithm,
+                iv: iv,
+              },
+              this.derivedKey,
+              ciphertext,
+            );
+
+            // Convertir a texto y parsear JSON
+            const decryptedText = decoder.decode(decryptedBuffer);
+            const parsedData = JSON.parse(decryptedText);
+
+            return parsedData;
+          } catch (error) {
+            console.error("Decryption error:", error);
+            throw new Error("Incorrect password or corrupted vault");
+          }
+        }
+      }
+      /*
+    ============================================
+    CONFIGURACIÓN DE SEGURIDAD
+    ============================================
+*/
+      const CRYPTO_CONFIG = {
+        saltLength: 32,
+        keyLength: 32, // AES-256
+        iterations: 310000, // PBKDF2 iterations (ajusta para ~1s en tu dispositivo)
+        algorithm: "AES-GCM",
+        ivLength: 12, // GCM recomienda 12 bytes
+      };
+
+      /*
+    ============================================
+    ESTADO DE LA APLICACIÓN
+    ============================================
+*/
+      let state = {
+        vaultFileHandle: null,
+        vaultFileName: null,
+        vaultFile: null,
+        mode: null,
+        decryptedData: {
+          version: 1,
+          entries: [],
+          metadata: {
+            created: new Date().toISOString(),
+            modified: new Date().toISOString(),
+          },
+        },
+      };
+      let cryptoContext = new CryptoContext();
+      /*
+    ============================================
+    HELPERS DE INTERFAZ
+    ============================================
+*/
+      function show(sectionId) {
+        document
+          .querySelectorAll("section")
+          .forEach((s) => s.classList.add("hidden"));
+        document.getElementById(sectionId).classList.remove("hidden");
+      }
+
+      function showError(elementId, message) {
+        const el = document.getElementById(elementId);
+        el.textContent = message;
+        el.classList.remove("hidden");
+        setTimeout(() => el.classList.add("hidden"), 3000);
+      }
+
+      function clearError(elementId) {
+        document.getElementById(elementId).classList.add("hidden");
+      }
+
+      function updateEntryList() {
+        const container = document.getElementById("entries-list");
+        const countEl = document.getElementById("entry-count");
+        if (state.decryptedData.entries.length === 0) {
+          container.innerHTML =
+            "<p>No entries yet. Add your first password!</p>";
+          countEl.textContent = "0";
+          return;
+        }
+
+        countEl.textContent = state.decryptedData.entries.length.toString();
+        container.innerHTML = "";
+
+        // Esta parte es muy engorrosa lo sé, pero la hice asi para evitar XSS.
+        // Si es primera vez que la lees, te recomiendo hechar un vistazo a la parte comentada de abajo.
+        state.decryptedData.entries.forEach((entry, index) => {
+          const div = document.createElement("div");
+          div.className = "entry";
+          // Creamos el elemento que muestra el usuario y la plataforma.
+          const UserPlatform = document.createElement("p");
+          UserPlatform.textContent = `${entry.platform} - ${entry.email}`;
+          // Creando boton ver
+          const btnView = document.createElement("button");
+          btnView.textContent = "👁️ View";
+          btnView.dataset.index = index;
+          btnView.addEventListener("click", showEntry);
+          // Creando boton eliminar
+          const btnDeleteEntry = document.createElement("button");
+          btnDeleteEntry.textContent = "🗑️ Delete";
+          btnDeleteEntry.dataset.index = index;
+          btnDeleteEntry.addEventListener("click", deleteEntry);
+          const containerPasswordRecoveryCodes = document.createElement("div");
+          // creamos e introducimos el username, los recovery codes y la password dentro SU contenedor.
+          const pUsername = document.createElement("p");
+          pUsername.textContent = `Username: ${entry.username || "(none)"}`;
+          const pRecoveryCodes = document.createElement("p");
+          pRecoveryCodes.textContent = `Recovery codes: ${entry.recovery_codes?.join(", ") || "(none)"}`;
+          const pPassword = document.createElement("p");
+          pPassword.textContent = `Password ${entry.password}`;
+          // Introducimos todos los elementos al contenedor padre.
+          containerPasswordRecoveryCodes.appendChild(pUsername);
+          containerPasswordRecoveryCodes.appendChild(pRecoveryCodes);
+          containerPasswordRecoveryCodes.appendChild(pPassword);
+          containerPasswordRecoveryCodes.id = `entry-${index}`;
+          containerPasswordRecoveryCodes.className = "hidden";
+          // Ahora procedemos a introducir todos estos elementos a 'div'.
+          div.appendChild(UserPlatform);
+          div.appendChild(btnView);
+          div.appendChild(btnDeleteEntry);
+          div.appendChild(containerPasswordRecoveryCodes);
+          // Esto es absolutamente equivalente en contenido:
+          // div.innerHTML = `
+          //     <strong>${entry.platform}</strong> - ${entry.email}
+          //     <button onclick="showEntry(${index})" data-index=${index}>👁️ View</button>
+          //     <button onclick="deleteEntry(${index})" style="color: red;" data-index=${index}>🗑️ Delete</button>
+          //     <div id="entry-${index}" class="hidden">
+          //         <p>Username: ${entry.username || '(none)'}</p>
+          //         <p>Recovery codes: ${entry.recovery_codes?.join(', ') || '(none)'}</p>
+          //         <p>Password: ${entry.password}</p>
+          //     </div>
+          // `;
+          container.appendChild(div);
+        });
+      }
+
+      function showEntry(e) {
+        const el = document.getElementById(
+          `entry-${e.currentTarget.dataset.index}`,
+        );
+        el.classList.toggle("hidden");
+      }
+
+      function deleteEntry(e) {
+        if (!confirm("Delete this entry permanently?")) return;
+
+        state.decryptedData.entries.splice(e.currentTarget.dataset.index, 1);
+        state.decryptedData.metadata.modified = new Date().toISOString();
+        updateEntryList();
+      }
+
+      /*
+    ============================================
+    MANEJO DE ARCHIVOS
+    ============================================
+*/
+      async function loadVaultFile() {
+        try {
+          // Usar File System Access API si disponible
+          if ("showOpenFilePicker" in window) {
+            const [fileHandle] = await window.showOpenFilePicker({
+              types: [
+                {
+                  description: "Vault Files",
+                  accept: { "application/octet-stream": [".vault"] },
+                },
+              ],
+              multiple: false,
+            });
+
+            const file = await fileHandle.getFile();
+            state.vaultFileHandle = fileHandle;
+            state.vaultFileName = file.name;
+
+            document.getElementById("filename").textContent = file.name;
+            document.getElementById("file-info").classList.remove("hidden");
+
+            state.vaultFile = await file.text();
+          } else {
+            // Fallback para navegadores antiguos
+            state.vaultFile = await new Promise((resolve) => {
+              const input = document.createElement("input");
+              input.type = "file";
+              input.accept = ".vault";
+
+              input.onchange = (e) => {
+                const file = e.target.files[0];
+                state.vaultFileName = file.name;
+
+                document.getElementById("filename").textContent = file.name;
+                document.getElementById("file-info").classList.remove("hidden");
+
+                const reader = new FileReader();
+                reader.onload = (event) => resolve(event.target.result);
+                reader.readAsText(file);
+              };
+
+              input.click();
+            });
+          }
+        } catch (error) {
+          if (error.name !== "AbortError") {
+            alert("Error loading file: " + error.message);
+          }
+        }
+      }
+
+      function downloadVault(encryptedData, filename = "vault.vault") {
+        const blob = new Blob([encryptedData], {
+          type: "application/octet-stream",
+        });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(url);
+      }
+
+      /*
+    ============================================
+    MANEJADORES DE EVENTOS
+    ============================================
+*/
+      document
+        .getElementById("btn-load")
+        .addEventListener("click", async () => {
+          state.mode = 'load';
+          await loadVaultFile();
+          show("auth");
+        });
+
+      document.getElementById("btn-create").addEventListener("click", () => {
+        // Resetear a vault vacío
+        state.decryptedData = {
+          version: 1,
+          entries: [],
+          metadata: {
+            created: new Date().toISOString(),
+            modified: new Date().toISOString(),
+          },
+        };
+        state.vaultFileHandle = null;
+        state.vaultFileName = null;
+        state.currentPassword = "";
+        state.mode = "create";
+        document.getElementById("file-info").classList.add("hidden");
+        show("vault");
+      });
+
+      document.getElementById("btn-back").addEventListener("click", () => {
+        state.currentPassword = "";
+        document.getElementById("master-password").value = "";
+        show("startup");
+      });
+
+      document
+        .getElementById("btn-unlock")
+        .addEventListener("click", async () => {
+          try {
+            if (!state.decryptedData) {
+              // Cargar archivo existente
+              const fileInput = document.createElement("input");
+              fileInput.type = "file";
+              fileInput.accept = ".vault";
+
+              state.vaultFile = await new Promise((resolve) => {
+                fileInput.onchange = async (e) => {
+                  const file = e.target.files[0];
+                  const reader = new FileReader();
+                  reader.onload = (event) => resolve(event.target.result);
+                  reader.readAsText(file);
+                };
+                fileInput.click();
+              });
+            }
+            let password = document.getElementById("master-password").value;
+            if (!password) {
+              showError("auth-error", "Password required");
+              return;
+            }
+            // Limpiar password del DOM inmediatamente
+            document.getElementById("master-password").value = "";
+            const raw = base64ToUint8(state.vaultFile);
+            await cryptoContext.init(
+              password,
+              raw.slice(0, 32)
+            );
+            password = null;
+            state.decryptedData = await cryptoContext.decrypt();
+            // Actualizar UI
+            updateEntryList();
+            show("vault");
+          } catch (error) {
+            showError("auth-error", "Invalid password or corrupted vault");
+            console.error("Unlock failed:", error);
+          }
+        });
+
+      document.getElementById("btn-add").addEventListener("click", () => {
+        const platform = document.getElementById("new-platform").value.trim();
+        const email = document.getElementById("new-email").value.trim();
+        const username = document.getElementById("new-username").value.trim();
+        const password = document.getElementById("new-password").value;
+        const recovery = document.getElementById("new-recovery").value;
+
+        if (!platform || !email || !password) {
+          alert("Platform, email, and password are required");
+          return;
+        }
+
+        // Agregar entrada
+        state.decryptedData.entries.push({
+          platform: platform,
+          email: email,
+          username: username || null,
+          password: password,
+          recovery_codes: recovery
+            ? recovery
+                .split("\n")
+                .map((s) => s.trim())
+                .filter((s) => s)
+            : [],
+          added: new Date().toISOString(),
+        });
+
+        state.decryptedData.metadata.modified = new Date().toISOString();
+
+        // Limpiar formulario
+        document.getElementById("new-platform").value = "";
+        document.getElementById("new-email").value = "";
+        document.getElementById("new-username").value = "";
+        document.getElementById("new-password").value = "";
+        document.getElementById("new-recovery").value = "";
+
+        // Actualizar lista
+        updateEntryList();
+      });
+
+      document
+        .getElementById("btn-save")
+        .addEventListener("click", async () => {
+          if (state.mode === "create") {
+            const modal = document.getElementById("password-modal");
+            modal.showModal();
+          } else {
+            saveFile();
+          }
+        });
+      async function saveFile() {
+        try {
+          const encryptedData = await cryptoContext.encrypt(
+            state.decryptedData,
+          );
+          const filename =
+            state.vaultFileName ||
+            `vault_${new Date().toISOString().slice(0, 10)}.vault`;
+          downloadVault(encryptedData, filename);
+
+          alert("Vault saved successfully!");
+        } catch (error) {
+          alert("Error saving vault: " + error.message);
+        }
+      }
+      document
+        .getElementById("confirmBtn")
+        .addEventListener("click", async (e) => {
+          const input = document.getElementById("modalPass");
+          const password = input.value;
+          input.value = "";
+          await cryptoContext.init(
+            password,
+            crypto.getRandomValues(new Uint8Array(CRYPTO_CONFIG.saltLength)),
+          );
+          saveFile();
+        });
+      document.getElementById("btn-lock").addEventListener("click", () => {
+        // Borrar todo de memoria
+        state.derivedKey = "";
+        state.decryptedData.entries = [];
+
+        // Limpiar UI
+        document.getElementById("master-password").value = "";
+        document.getElementById("entries-list").innerHTML = "";
+
+        show("startup");
+      });
+
+      document.getElementById("btn-clear").addEventListener("click", () => {
+        if (
+          confirm(
+            "⚠️ DANGER: This will delete ALL entries permanently. Continue?",
+          )
+        ) {
+          if (confirm("⚠️ LAST WARNING: This cannot be undone!")) {
+            state.decryptedData.entries = [];
+            state.decryptedData.metadata.modified = new Date().toISOString();
+            updateEntryList();
+          }
+        }
+      });
+
+      document.getElementById("cancelBtn").addEventListener("click", (e) => {
+        const modal = e.currentTarget.closest("dialog");
+        modal.close();
+      });
+      document.getElementById("close", () => {});
+      /*
+    ============================================
+    INICIALIZACIÓN
+    ============================================
+*/
+      // Proteger contra pérdida de datos al cerrar
+      window.addEventListener("beforeunload", (event) => {
+        if (state.decryptedData.entries.length > 0) {
+          event.preventDefault();
+          event.returnValue = "You have unsaved passwords. Close anyway?";
+        }
+      });
+
+      // Iniciar
+      show("startup");
+      console.log(
+        "Local Password Vault loaded. All encryption happens locally.",
+      );
+    </script>
   </body>
 </html>
