@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client - ElysiaJS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .status {
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-connect {
+            background: #27ae60;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-connect:hover {
+            background: #229954;
+        }
+
+        .btn-disconnect {
+            background: #e74c3c;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-disconnect:hover {
+            background: #c0392b;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-send {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+        }
+
+        .btn-send:hover {
+            background: #5568d3;
+        }
+
+        .btn-send:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .messages {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            border-left: 4px solid #667eea;
+        }
+
+        .message.sent {
+            border-left-color: #27ae60;
+            background: #e8f5e9;
+        }
+
+        .message.received {
+            border-left-color: #2196f3;
+            background: #e3f2fd;
+        }
+
+        .message.system {
+            border-left-color: #ff9800;
+            background: #fff3e0;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .message-latency {
+            font-size: 11px;
+            color: #888;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .ws-url {
+            font-size: 12px;
+            color: #555;
+            word-break: break-all;
+            margin-top: 4px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔌 WebSocket Client</h1>
+        
+        <div class="status disconnected" id="status">
+            ⚫ Desconectado
+        </div>
+        <div class="ws-url" id="wsUrl"></div>
+
+        <div class="controls">
+            <button class="btn-connect" onclick="connect()">Conectar</button>
+            <button class="btn-disconnect" onclick="disconnect()">Desconectar</button>
+        </div>
+
+        <div class="input-group">
+            <input 
+                type="text" 
+                id="messageInput" 
+                placeholder="Escribe un mensaje..." 
+                disabled
+                onkeypress="if(event.key === 'Enter') sendMessage()"
+            >
+            <button class="btn-send" id="sendBtn" onclick="sendMessage()" disabled>
+                Enviar
+            </button>
+        </div>
+
+        <div class="messages" id="messages"></div>
+    </div>
+
+    <script>
+        let ws = null;
+        let lastSentTime = null;
+        const WS_URL = 'ws://sandra-rhode-argue-specialized.trycloudflare.com/chat'; // Cambia esto según tu servidor
+
+        document.getElementById('wsUrl').innerHTML = `🌐 URL: <strong>${WS_URL}</strong>`;
+
+        function updateStatus(connected) {
+            const statusDiv = document.getElementById('status');
+            const messageInput = document.getElementById('messageInput');
+            const sendBtn = document.getElementById('sendBtn');
+
+            if (connected) {
+                statusDiv.className = 'status connected';
+                statusDiv.textContent = '🟢 Conectado';
+                messageInput.disabled = false;
+                sendBtn.disabled = false;
+            } else {
+                statusDiv.className = 'status disconnected';
+                statusDiv.textContent = '⚫ Desconectado';
+                messageInput.disabled = true;
+                sendBtn.disabled = true;
+            }
+        }
+
+        function addMessage(text, type = 'system', latency = null) {
+            const messagesDiv = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const time = new Date().toLocaleTimeString();
+            const latencyHtml = latency !== null ? `<div class="message-latency">⏱️ ${latency} ms</div>` : '';
+            messageDiv.innerHTML = `
+                <div class="message-time">${time}</div>
+                <div>${text}</div>
+                ${latencyHtml}
+            `;
+            
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function connect() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                addMessage('Ya estás conectado', 'system');
+                return;
+            }
+
+            addMessage('Conectando...', 'system');
+            
+            ws = new WebSocket(WS_URL);
+
+            ws.onopen = () => {
+                updateStatus(true);
+                addMessage('✅ Conexión establecida', 'system');
+            };
+
+            ws.onmessage = (event) => {
+                const latency = lastSentTime ? Date.now() - lastSentTime : null;
+                addMessage(event.data, 'received', latency);
+                lastSentTime = null;
+            };
+
+            ws.onclose = () => {
+                updateStatus(false);
+                addMessage('❌ Conexión cerrada', 'system');
+            };
+
+            ws.onerror = (error) => {
+                addMessage('⚠️ Error de conexión', 'system');
+                console.error('WebSocket error:', error);
+            };
+        }
+
+        function disconnect() {
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                addMessage('⚠️ No estás conectado', 'system');
+                return;
+            }
+
+            lastSentTime = Date.now();
+            ws.send(message);
+            addMessage(message, 'sent');
+            input.value = '';
+        }
+
+        // Conectar automáticamente al cargar la página
+        window.addEventListener('load', () => {
+            addMessage('Cliente WebSocket listo. Haz clic en "Conectar" para empezar.', 'system');
+        });
+    </script>
+</body>
+</html>
